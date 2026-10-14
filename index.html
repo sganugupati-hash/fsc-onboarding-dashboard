@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FSC Post-Onboarding Outcomes Dashboard</title>
+<style>
+  :root {
+    --blue-70: #0176D3;
+    --blue-50: #1B96FF;
+    --blue-10: #EEF4FF;
+    --green-50: #2E844A;
+    --green-10: #EEF5EE;
+    --purple-50: #9050E9;
+    --purple-10: #F4F0FF;
+    --teal-50: #0D9DDA;
+    --teal-10: #E8F7FC;
+    --orange-50: #DD7A01;
+    --orange-10: #FEF3E2;
+    --gray-90: #181818;
+    --gray-70: #444444;
+    --gray-50: #747474;
+    --gray-20: #DDDBDA;
+    --gray-10: #F3F2F1;
+    --surface: #FFFFFF;
+    --page-bg: #F3F2F1;
+    --border: #DDDBDA;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Salesforce Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--page-bg);
+    color: var(--gray-90);
+    min-height: 100vh;
+  }
+
+  /* ── Header ── */
+  .header {
+    background: linear-gradient(135deg, #032D60 0%, #0176D3 100%);
+    padding: 24px 32px 20px;
+    color: white;
+  }
+  .header-meta {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 6px;
+  }
+  .header-title {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+  }
+  .header-subtitle {
+    font-size: 14px;
+    color: rgba(255,255,255,0.8);
+    margin-top: 4px;
+  }
+  .header-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 20px;
+    padding: 3px 12px;
+    font-size: 12px;
+    margin-top: 10px;
+  }
+
+  /* ── Tabs ── */
+  .tab-bar {
+    background: #032D60;
+    padding: 0 32px;
+    display: flex;
+    gap: 0;
+    border-bottom: 2px solid rgba(255,255,255,0.12);
+  }
+  .tab-btn {
+    padding: 12px 20px;
+    color: rgba(255,255,255,0.65);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    position: relative;
+    transition: color 0.2s;
+  }
+  .tab-btn:hover { color: rgba(255,255,255,0.9); }
+  .tab-btn.active {
+    color: #FFFFFF;
+    font-weight: 600;
+  }
+  .tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #1B96FF;
+  }
+
+  /* ── Layout ── */
+  .page { display: none; padding: 28px 32px 40px; }
+  .page.active { display: block; }
+
+  /* ── Stat Tiles ── */
+  .tiles-row {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+  .tile {
+    background: var(--surface);
+    border-radius: 8px;
+    padding: 20px 18px 16px;
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+    transition: box-shadow 0.18s;
+  }
+  .tile:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+  .tile::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+  .tile.blue::before { background: var(--blue-70); }
+  .tile.green::before { background: var(--green-50); }
+  .tile.purple::before { background: var(--purple-50); }
+  .tile.teal::before { background: var(--teal-50); }
+  .tile.orange::before { background: var(--orange-50); }
+  .tile.gray::before { background: var(--gray-50); }
+
+  .tile-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    font-size: 18px;
+  }
+  .tile.blue .tile-icon { background: var(--blue-10); }
+  .tile.green .tile-icon { background: var(--green-10); }
+  .tile.purple .tile-icon { background: var(--purple-10); }
+  .tile.teal .tile-icon { background: var(--teal-10); }
+  .tile.orange .tile-icon { background: var(--orange-10); }
+  .tile.gray .tile-icon { background: var(--gray-10); }
+
+  .tile-value {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .tile.blue .tile-value { color: var(--blue-70); }
+  .tile.green .tile-value { color: var(--green-50); }
+  .tile.purple .tile-value { color: var(--purple-50); }
+  .tile.teal .tile-value { color: var(--teal-50); }
+  .tile.orange .tile-value { color: var(--orange-50); }
+  .tile.gray .tile-value { color: var(--gray-70); }
+
+  .tile-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--gray-50);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    line-height: 1.3;
+  }
+  .tile-sub {
+    font-size: 12px;
+    color: var(--gray-50);
+    margin-top: 6px;
+  }
+
+  /* ── Section headers ── */
+  .section-header {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--gray-90);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* ── Charts grid ── */
+  .charts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+  .charts-grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+
+  .chart-card {
+    background: var(--surface);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    padding: 20px 20px 16px;
+  }
+  .chart-card.full-width {
+    grid-column: 1 / -1;
+  }
+  .chart-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gray-90);
+    margin-bottom: 4px;
+  }
+  .chart-subtitle {
+    font-size: 12px;
+    color: var(--gray-50);
+    margin-bottom: 16px;
+  }
+
+  /* ── Horizontal Bar Chart ── */
+  .hbar-chart { display: flex; flex-direction: column; gap: 12px; }
+  .hbar-row { display: flex; flex-direction: column; gap: 4px; }
+  .hbar-header { display: flex; justify-content: space-between; align-items: baseline; }
+  .hbar-label { font-size: 12px; font-weight: 500; color: var(--gray-70); }
+  .hbar-value { font-size: 13px; font-weight: 700; color: var(--gray-90); }
+  .hbar-track {
+    height: 10px;
+    background: var(--gray-10);
+    border-radius: 4px;
+    overflow: visible;
+    position: relative;
+  }
+  .hbar-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.8s cubic-bezier(0.4,0,0.2,1);
+    position: relative;
+  }
+  .hbar-fill::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    right: 0;
+    top: -32px;
+    background: rgba(0,0,0,0.85);
+    color: white;
+    font-size: 11px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s;
+    transform: translateX(50%);
+  }
+  .hbar-fill:hover::after { opacity: 1; }
+
+  /* ── Donut Chart (SVG) ── */
+  .donut-wrap {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .donut-svg { flex-shrink: 0; }
+  .donut-legend { display: flex; flex-direction: column; gap: 10px; }
+  .legend-item { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .legend-name { color: var(--gray-70); flex: 1; }
+  .legend-pct { font-weight: 700; color: var(--gray-90); }
+
+  /* ── Adoption Funnel ── */
+  .funnel-chart { display: flex; flex-direction: column; gap: 6px; align-items: center; }
+  .funnel-step {
+    width: 100%;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    padding: 10px 16px;
+    gap: 12px;
+    cursor: default;
+    position: relative;
+    transition: filter 0.15s;
+  }
+  .funnel-step:hover { filter: brightness(0.95); }
+  .funnel-label { font-size: 13px; font-weight: 600; color: white; flex: 1; }
+  .funnel-count { font-size: 15px; font-weight: 700; color: white; }
+  .funnel-pct { font-size: 12px; color: rgba(255,255,255,0.8); }
+
+  .tooltip-box {
+    position: fixed;
+    background: rgba(9,9,9,0.9);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    pointer-events: none;
+    z-index: 9999;
+    max-width: 220px;
+    line-height: 1.5;
+    display: none;
+  }
+  .tooltip-box.visible { display: block; }
+
+  /* ── Tab 2: Comparison ── */
+  .comparison-hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+  .group-card {
+    border-radius: 10px;
+    padding: 20px 24px;
+    border: 2px solid;
+  }
+  .group-card.with-guide {
+    background: linear-gradient(135deg, #EEF4FF 0%, #F8FAFF 100%);
+    border-color: #0176D3;
+  }
+  .group-card.no-guide {
+    background: linear-gradient(135deg, #F9F9F9 0%, #FFFFFF 100%);
+    border-color: #8E8E8E;
+  }
+  .group-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .group-card.with-guide .group-title { color: #0176D3; }
+  .group-card.no-guide .group-title { color: #444; }
+  .group-count {
+    font-size: 42px;
+    font-weight: 800;
+    line-height: 1;
+    margin: 12px 0 4px;
+  }
+  .group-card.with-guide .group-count { color: #0176D3; }
+  .group-card.no-guide .group-count { color: #444; }
+  .group-pct { font-size: 14px; color: var(--gray-50); margin-bottom: 16px; }
+
+  .mini-metrics { display: flex; flex-direction: column; gap: 10px; }
+  .mini-metric-row { display: flex; align-items: center; gap: 10px; }
+  .mini-metric-label { font-size: 12px; color: var(--gray-70); flex: 1; }
+  .mini-metric-bar-track {
+    flex: 2;
+    height: 8px;
+    background: var(--gray-20);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .mini-metric-fill { height: 100%; border-radius: 4px; transition: width 1s; }
+  .with-guide .mini-metric-fill { background: #0176D3; }
+  .no-guide .mini-metric-fill { background: #8E8E8E; }
+  .mini-metric-val { font-size: 13px; font-weight: 700; width: 38px; text-align: right; }
+  .with-guide .mini-metric-val { color: #0176D3; }
+  .no-guide .mini-metric-val { color: #444; }
+
+  /* ── Grouped Bar Chart ── */
+  .grouped-bar-chart { position: relative; }
+  .chart-legend-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 16px;
+  }
+  .chart-legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--gray-70); }
+  .chart-legend-swatch {
+    width: 12px; height: 12px; border-radius: 2px;
+  }
+
+  .bar-group-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 28px;
+    height: 200px;
+    padding-bottom: 32px;
+    padding-top: 8px;
+    position: relative;
+    border-bottom: 2px solid var(--gray-20);
+  }
+
+  /* horizontal gridlines */
+  .bar-group-chart::before {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; top: 0; bottom: 32px;
+    background: repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent calc(25% - 1px),
+      #E5E5E5 calc(25% - 1px),
+      #E5E5E5 25%
+    );
+    pointer-events: none;
+  }
+
+  .bar-cluster {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    position: relative;
+  }
+  .bar-cluster-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 4px;
+    width: 100%;
+    justify-content: center;
+    flex: 1;
+  }
+  .bar-single {
+    flex: 1;
+    max-width: 44px;
+    border-radius: 4px 4px 0 0;
+    position: relative;
+    cursor: pointer;
+    transition: filter 0.15s;
+    min-height: 2px;
+  }
+  .bar-single:hover { filter: brightness(0.88); }
+  .bar-single.guide-bar { background: #0176D3; }
+  .bar-single.noguide-bar { background: #8E8E8E; }
+  .bar-cluster-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--gray-50);
+    text-align: center;
+    margin-top: 8px;
+    position: absolute;
+    bottom: -28px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+  }
+
+  .y-axis-labels {
+    position: absolute;
+    left: 0; top: 8px; bottom: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    pointer-events: none;
+  }
+  .y-tick { font-size: 10px; color: var(--gray-50); }
+
+  /* ── CSAT Stars ── */
+  .csat-display {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .stars { color: #FCC32C; font-size: 18px; letter-spacing: 2px; }
+  .csat-score { font-size: 28px; font-weight: 800; }
+  .csat-n { font-size: 12px; color: var(--gray-50); }
+
+  /* ── Insight callout ── */
+  .insight-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+  .insight-card {
+    background: var(--surface);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    padding: 16px;
+    border-left: 4px solid;
+  }
+  .insight-card.positive { border-left-color: #2E844A; }
+  .insight-card.neutral { border-left-color: #0176D3; }
+  .insight-card.caution { border-left-color: #DD7A01; }
+  .insight-icon { font-size: 20px; margin-bottom: 6px; }
+  .insight-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gray-50); margin-bottom: 4px; }
+  .insight-value { font-size: 22px; font-weight: 800; }
+  .insight-card.positive .insight-value { color: #2E844A; }
+  .insight-card.neutral .insight-value { color: #0176D3; }
+  .insight-card.caution .insight-value { color: #DD7A01; }
+  .insight-desc { font-size: 12px; color: var(--gray-50); margin-top: 4px; line-height: 1.4; }
+
+  /* ── Summary table ── */
+  .summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .summary-table th {
+    background: #F3F2F1;
+    padding: 10px 14px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--gray-50);
+    border-bottom: 2px solid var(--border);
+  }
+  .summary-table td {
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+  .summary-table tr:hover td { background: #F8F8F8; }
+  .metric-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .pill-blue { background: var(--blue-10); color: var(--blue-70); }
+  .pill-green { background: var(--green-10); color: var(--green-50); }
+  .pill-gray { background: var(--gray-10); color: var(--gray-70); }
+  .delta-tag {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 10px;
+  }
+  .delta-up { background: #EEF5EE; color: #2E844A; }
+  .delta-down { background: #FEF3E2; color: #DD7A01; }
+
+  /* ── Responsive ── */
+  @media (max-width: 900px) {
+    .tiles-row { grid-template-columns: repeat(3, 1fr); }
+    .charts-grid, .charts-grid-3, .comparison-hero { grid-template-columns: 1fr; }
+    .insight-row { grid-template-columns: repeat(2, 1fr); }
+    .header, .tab-bar, .page { padding-left: 16px; padding-right: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="tooltip-box" id="tooltip"></div>
+
+<!-- Header -->
+<div class="header">
+  <div class="header-meta">Financial Services Cloud · Customer Onboarding Team</div>
+  <div class="header-title">Post-Onboarding Outcomes Dashboard</div>
+  <div class="header-subtitle">FYTD'27 · Closed Accounts · Premier Onboarding Program</div>
+  <div class="header-badge">As of October 2026 · 72 FSC Accounts</div>
+</div>
+
+<!-- Tab Bar -->
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="showTab('overview')">Overview</button>
+  <button class="tab-btn" onclick="showTab('guide')">Guide Engagement Analysis</button>
+</div>
+
+<!-- ═══════════════ TAB 1: OVERVIEW ═══════════════ -->
+<div class="page active" id="tab-overview">
+
+  <!-- Stat Tiles -->
+  <div class="tiles-row">
+    <div class="tile blue" data-tip="Total FSC accounts that have completed the Premier Onboarding program in FYTD'27.">
+      <div class="tile-icon">🏢</div>
+      <div class="tile-value">72</div>
+      <div class="tile-label">Accounts Onboarded</div>
+      <div class="tile-sub">FYTD'27 · FSC</div>
+    </div>
+    <div class="tile green" data-tip="Average CSAT score from accounts that submitted ratings. Scale 1–5.">
+      <div class="tile-icon">⭐</div>
+      <div class="tile-value">4.8<span style="font-size:18px">/5</span></div>
+      <div class="tile-label">Overall CSAT</div>
+      <div class="tile-sub">High satisfaction</div>
+    </div>
+    <div class="tile purple" data-tip="Accounts where a Guide engagement session was completed (Column G, FSC sheet). Only 11% of accounts received guide engagement.">
+      <div class="tile-icon">🎯</div>
+      <div class="tile-value">8</div>
+      <div class="tile-label">Guide Engagements</div>
+      <div class="tile-sub">11% of total</div>
+    </div>
+    <div class="tile orange" data-tip="PSL (Provisioned Seat License) activation rate across all 72 FSC accounts.">
+      <div class="tile-icon">🔑</div>
+      <div class="tile-value">39<span style="font-size:18px">%</span></div>
+      <div class="tile-label">PSL Activation Rate</div>
+      <div class="tile-sub">Industry benchmark gap</div>
+    </div>
+    <div class="tile teal" data-tip="Accounts that have activated Salesforce Go access post onboarding.">
+      <div class="tile-icon">⚡</div>
+      <div class="tile-value">19<span style="font-size:18px">%</span></div>
+      <div class="tile-label">SF Go Access</div>
+      <div class="tile-sub">14 of 72 accounts</div>
+    </div>
+    <div class="tile gray" data-tip="Accounts with at least one foundational FSC feature activated (Financial Account 360, ARC, Field Audit Trail, etc.)">
+      <div class="tile-icon">✅</div>
+      <div class="tile-value">60<span style="font-size:18px">%</span></div>
+      <div class="tile-label">Foundational Features</div>
+      <div class="tile-sub">43 of 72 accounts</div>
+    </div>
+  </div>
+
+  <div class="charts-grid">
+    <!-- Adoption Funnel -->
+    <div class="chart-card">
+      <div class="chart-title">Adoption Funnel — Key Outcomes</div>
+      <div class="chart-subtitle">Percentage of 72 onboarded FSC accounts reaching each milestone</div>
+      <div class="funnel-chart" id="funnel-chart"></div>
+    </div>
+
+    <!-- Donut: Foundational Features -->
+    <div class="chart-card">
+      <div class="chart-title">Foundational Feature Activation</div>
+      <div class="chart-subtitle">Proportion of accounts with ≥1 FSC foundational feature live</div>
+      <div style="display:flex; align-items:center; gap:20px; margin-top:8px;">
+        <svg width="160" height="160" viewBox="0 0 160 160" class="donut-svg">
+          <!-- Activated segment: 60% of 339.292 = 203.6 -->
+          <circle cx="80" cy="80" r="54" fill="none" stroke="#F3F2F1" stroke-width="22"/>
+          <circle cx="80" cy="80" r="54" fill="none" stroke="#2E844A" stroke-width="22"
+            stroke-dasharray="203.58 339.29" stroke-dashoffset="84.82"
+            stroke-linecap="round" style="transition:stroke-dasharray 1s;">
+            <title>43 accounts (60%) have foundational features activated</title>
+          </circle>
+          <circle cx="80" cy="80" r="54" fill="none" stroke="#DDDBDA" stroke-width="22"
+            stroke-dasharray="135.72 339.29" stroke-dashoffset="-118.76"
+            stroke-linecap="round">
+            <title>29 accounts (40%) do not have features activated</title>
+          </circle>
+          <text x="80" y="74" text-anchor="middle" font-size="22" font-weight="800" fill="#2E844A">43</text>
+          <text x="80" y="92" text-anchor="middle" font-size="12" fill="#747474">of 72</text>
+        </svg>
+        <div class="donut-legend">
+          <div class="legend-item">
+            <div class="legend-dot" style="background:#2E844A"></div>
+            <span class="legend-name">Features Activated</span>
+            <span class="legend-pct">60%</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot" style="background:#DDDBDA"></div>
+            <span class="legend-name">Not Yet Activated</span>
+            <span class="legend-pct">40%</span>
+          </div>
+          <div style="margin-top:12px; padding:12px; background:#EEF5EE; border-radius:6px;">
+            <div style="font-size:11px; font-weight:700; color:#2E844A; margin-bottom:4px;">TOP FEATURES ACTIVATED</div>
+            <div style="font-size:12px; color:#444; line-height:1.6;">
+              Financial Account 360<br>
+              Field Audit Trail<br>
+              Actionable Relationship Center<br>
+              Action Plans
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="charts-grid">
+    <!-- PSL Activation horizontal bar -->
+    <div class="chart-card">
+      <div class="chart-title">PSL Activation Breakdown</div>
+      <div class="chart-subtitle">Utilization rate across key account segments</div>
+      <div class="hbar-chart" id="psl-chart"></div>
+    </div>
+
+    <!-- Guide vs No-Guide quick view -->
+    <div class="chart-card">
+      <div class="chart-title">Guide Engagement Split</div>
+      <div class="chart-subtitle">Impact of Guide engagement on key adoption outcomes</div>
+      <div style="display:flex; gap:24px; margin-top:8px;">
+        <svg width="130" height="130" viewBox="0 0 130 130">
+          <!-- With guide: 11% of 276.46 = 30.4 -->
+          <circle cx="65" cy="65" r="44" fill="none" stroke="#F3F2F1" stroke-width="18"/>
+          <circle cx="65" cy="65" r="44" fill="none" stroke="#0176D3" stroke-width="18"
+            stroke-dasharray="30.4 276.46" stroke-dashoffset="69.1"
+            stroke-linecap="round">
+          </circle>
+          <circle cx="65" cy="65" r="44" fill="none" stroke="#DDDBDA" stroke-width="18"
+            stroke-dasharray="246.1 276.46" stroke-dashoffset="-161.1"
+            stroke-linecap="round">
+          </circle>
+          <text x="65" y="60" text-anchor="middle" font-size="18" font-weight="800" fill="#0176D3">8</text>
+          <text x="65" y="76" text-anchor="middle" font-size="10" fill="#747474">with guide</text>
+        </svg>
+        <div style="display:flex; flex-direction:column; gap:14px; justify-content:center;">
+          <div>
+            <div style="display:flex; align-items:center; gap:8px;">
+              <div style="width:12px; height:12px; border-radius:2px; background:#0176D3;"></div>
+              <span style="font-size:13px; color:#444;">With Guide Engagement</span>
+            </div>
+            <div style="font-size:26px; font-weight:800; color:#0176D3; line-height:1.1; margin-top:3px;">8 <span style="font-size:14px; font-weight:500; color:#747474">accounts (11%)</span></div>
+          </div>
+          <div>
+            <div style="display:flex; align-items:center; gap:8px;">
+              <div style="width:12px; height:12px; border-radius:2px; background:#DDDBDA;"></div>
+              <span style="font-size:13px; color:#444;">Without Guide Engagement</span>
+            </div>
+            <div style="font-size:26px; font-weight:800; color:#747474; line-height:1.1; margin-top:3px;">64 <span style="font-size:14px; font-weight:500; color:#747474">accounts (89%)</span></div>
+          </div>
+          <div style="background:#EEF4FF; border-radius:6px; padding:10px 12px; font-size:12px; color:#0176D3;">
+            <strong>Guide engaged accounts show<br>significantly higher adoption</strong> across all metrics →
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Summary metrics table -->
+  <div class="section-header">📋 Onboarding Outcomes Summary</div>
+  <div class="chart-card" style="padding:0; overflow:hidden;">
+    <table class="summary-table">
+      <thead>
+        <tr>
+          <th>Outcome Metric</th>
+          <th>Total Accounts</th>
+          <th>Count</th>
+          <th>Rate</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Accounts Onboarded</strong></td>
+          <td>—</td>
+          <td><strong>72</strong></td>
+          <td>100%</td>
+          <td><span class="metric-pill pill-blue">✓ Baseline</span></td>
+        </tr>
+        <tr>
+          <td><strong>Guide Engagement Completed</strong></td>
+          <td>72</td>
+          <td>8</td>
+          <td>11%</td>
+          <td><span class="metric-pill pill-gray">↓ Low Coverage</span></td>
+        </tr>
+        <tr>
+          <td><strong>Foundational Features Activated</strong></td>
+          <td>72</td>
+          <td>43</td>
+          <td>60%</td>
+          <td><span class="metric-pill pill-green">✓ On Track</span></td>
+        </tr>
+        <tr>
+          <td><strong>PSL Activation</strong></td>
+          <td>72</td>
+          <td>28</td>
+          <td>39%</td>
+          <td><span class="metric-pill pill-gray">⚠ Needs Improvement</span></td>
+        </tr>
+        <tr>
+          <td><strong>Salesforce Go Access</strong></td>
+          <td>72</td>
+          <td>14</td>
+          <td>19%</td>
+          <td><span class="metric-pill pill-gray">⚠ Low Adoption</span></td>
+        </tr>
+        <tr>
+          <td><strong>Overall CSAT (responded)</strong></td>
+          <td>29 responses</td>
+          <td>—</td>
+          <td>4.4 / 5.0</td>
+          <td><span class="metric-pill pill-green">★ High Satisfaction</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<!-- ═══════════════ TAB 2: GUIDE ENGAGEMENT ANALYSIS ═══════════════ -->
+<div class="page" id="tab-guide">
+
+  <!-- Insight callouts -->
+  <div class="insight-row">
+    <div class="insight-card positive">
+      <div class="insight-icon">✅</div>
+      <div class="insight-title">Feature Activation Lift</div>
+      <div class="insight-value">+32pts</div>
+      <div class="insight-desc">With guide: 88% features activated vs. 56% without — a 1.6× improvement</div>
+    </div>
+    <div class="insight-card neutral">
+      <div class="insight-icon">🔑</div>
+      <div class="insight-title">PSL Activation Lift</div>
+      <div class="insight-value">+22pts</div>
+      <div class="insight-desc">Guide accounts: 59% PSL avg vs. 37% without — guide correlates with deeper license use</div>
+    </div>
+    <div class="insight-card neutral">
+      <div class="insight-icon">⚡</div>
+      <div class="insight-title">SF Go Access</div>
+      <div class="insight-value">25% vs 19%</div>
+      <div class="insight-desc">Guide-engaged accounts have higher SF Go access: 2 of 8 (25%) vs. 12 of 64 (19%)</div>
+    </div>
+    <div class="insight-card caution">
+      <div class="insight-icon">📊</div>
+      <div class="insight-title">Guide Coverage Gap</div>
+      <div class="insight-value">Only 11%</div>
+      <div class="insight-desc">Just 8 of 72 accounts received guide engagement — opportunity to scale program</div>
+    </div>
+  </div>
+
+  <!-- Group Cards -->
+  <div class="comparison-hero">
+    <div class="group-card with-guide">
+      <div class="group-title">With Guide Engagement</div>
+      <div style="font-size:13px; color:#0176D3;">Accounts that completed a Guide session (Column G)</div>
+      <div class="group-count">8</div>
+      <div class="group-pct">11% of 72 total FSC accounts</div>
+      <div class="mini-metrics" id="guide-metrics"></div>
+    </div>
+    <div class="group-card no-guide">
+      <div class="group-title">Without Guide Engagement</div>
+      <div style="font-size:13px; color:#747474;">Accounts with no Guide session recorded</div>
+      <div class="group-count">64</div>
+      <div class="group-pct">89% of 72 total FSC accounts</div>
+      <div class="mini-metrics" id="noguide-metrics"></div>
+    </div>
+  </div>
+
+  <!-- Grouped Bar Chart -->
+  <div class="chart-card" style="margin-bottom:20px;">
+    <div class="chart-title">Side-by-Side Metric Comparison — Guide vs. No Guide</div>
+    <div class="chart-subtitle">Percentage of accounts achieving each outcome, by guide engagement status</div>
+    <div class="chart-legend-row">
+      <div class="chart-legend-item">
+        <div class="chart-legend-swatch" style="background:#0176D3;"></div>
+        With Guide Engagement (8 accounts)
+      </div>
+      <div class="chart-legend-item">
+        <div class="chart-legend-swatch" style="background:#8E8E8E;"></div>
+        Without Guide Engagement (64 accounts)
+      </div>
+    </div>
+    <div id="grouped-bar-container"></div>
+  </div>
+
+  <!-- CSAT Comparison -->
+  <div class="charts-grid">
+    <div class="chart-card">
+      <div class="chart-title">CSAT Score — With Guide</div>
+      <div class="chart-subtitle">Average from 3 responses (guide-engaged accounts — small sample)</div>
+      <div class="csat-display" style="margin-top:16px;">
+        <div class="csat-score" style="color:#0176D3;">4.7</div>
+        <div>
+          <div class="stars">★★★★★</div>
+          <div style="font-size:12px; color:#0176D3; font-weight:600; margin-top:2px;">● 3 responses (n too small)</div>
+        </div>
+      </div>
+      <div style="margin-top:12px; background:#FEF3E2; border-radius:6px; padding:10px 12px; font-size:12px; color:#DD7A01;">
+        ⚠ Only 3 of 8 guide-engaged accounts submitted CSAT. Scores: 4.0, 5.0, 5.0. Not statistically meaningful.
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">CSAT Score — Overall (All 72 Accounts)</div>
+      <div class="chart-subtitle">Across all FSC onboarded accounts regardless of guide status</div>
+      <div class="csat-display" style="margin-top:16px;">
+        <div class="csat-score" style="color:#2E844A;">4.8</div>
+        <div>
+          <div class="stars" style="color:#FCC32C;">★★★★★</div>
+          <div style="font-size:12px; color:#2E844A; font-weight:600; margin-top:2px;">● High Satisfaction</div>
+        </div>
+      </div>
+      <div style="margin-top:16px;">
+        <div class="hbar-chart" id="csat-noguide-dist"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Detailed comparison table -->
+  <div class="section-header" style="margin-top:8px;">📊 Detailed Metric Comparison Table</div>
+  <div class="chart-card" style="padding:0; overflow:hidden;">
+    <table class="summary-table">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th style="color:#0176D3;">With Guide (50)</th>
+          <th style="color:#747474;">Without Guide (64)</th>
+          <th>Delta</th>
+          <th>Insight</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Foundational Features Activated</strong></td>
+          <td><span class="metric-pill pill-blue">7 accts (88%)</span></td>
+          <td><span class="metric-pill pill-gray">36 accts (56%)</span></td>
+          <td><span class="delta-tag delta-up">+32pts</span></td>
+          <td style="color:#444; font-size:12px;">Guide accounts show significantly higher feature activation</td>
+        </tr>
+        <tr>
+          <td><strong>PSL Activation Rate (avg)</strong></td>
+          <td><span class="metric-pill pill-blue">~59%</span></td>
+          <td><span class="metric-pill pill-gray">~37%</span></td>
+          <td><span class="delta-tag delta-up">+22pts</span></td>
+          <td style="color:#444; font-size:12px;">Guide-engaged accounts have nearly 1.6× higher PSL utilization</td>
+        </tr>
+        <tr>
+          <td><strong>Salesforce Go Access</strong></td>
+          <td><span class="metric-pill pill-blue">2 accts (25%)</span></td>
+          <td><span class="metric-pill pill-gray">12 accts (19%)</span></td>
+          <td><span class="delta-tag delta-up">+6pts</span></td>
+          <td style="color:#444; font-size:12px;">Guide accounts slightly more likely to have SF Go enabled</td>
+        </tr>
+        <tr>
+          <td><strong>CSAT (avg, rated accounts)</strong></td>
+          <td><span class="metric-pill pill-blue">4.7 / 5.0 <span style="font-size:10px;">(n=3)</span></span></td>
+          <td><span class="metric-pill pill-gray">4.8 / 5.0 overall</span></td>
+          <td><span class="delta-tag delta-down">small sample</span></td>
+          <td style="color:#444; font-size:12px;">Guide CSAT based on 3 responses — insufficient for comparison</td>
+        </tr>
+        <tr>
+          <td><strong>Count (% of 72 total)</strong></td>
+          <td><span class="metric-pill pill-blue">8 accounts (11%)</span></td>
+          <td><span class="metric-pill pill-gray">64 accounts (89%)</span></td>
+          <td>—</td>
+          <td style="color:#444; font-size:12px; color:#DD7A01;"><strong>Guide program reaches only 11% of accounts — major scale opportunity</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+// ── Data ──────────────────────────────────────────────────────────────
+const TOTAL = 72;
+const METRICS = {
+  guide: 8,
+  psl: 28,
+  sfgo: 14,
+  features: 43,
+  csat: 4.8,
+};
+const GUIDE_GROUP = {
+  total: 8,
+  features: 7,   // 7/8 = 88% have features activated
+  psl: 5,        // ~59% avg PSL activation rate
+  sfgo: 2,       // 2/8 = 25% have SF Go
+  csat: 4.7,
+};
+const NOGUIDE_GROUP = {
+  total: 64,
+  features: 36,  // 36/64 = 56%
+  psl: 24,       // ~37%
+  sfgo: 12,      // 12/64 = 19%
+  csat: 4.8,
+};
+
+// ── Tooltip ────────────────────────────────────────────────────────────
+const tip = document.getElementById('tooltip');
+document.querySelectorAll('[data-tip]').forEach(el => {
+  el.addEventListener('mouseenter', e => {
+    tip.textContent = el.getAttribute('data-tip');
+    tip.classList.add('visible');
+  });
+  el.addEventListener('mousemove', e => {
+    tip.style.left = (e.clientX + 14) + 'px';
+    tip.style.top = (e.clientY - 8) + 'px';
+  });
+  el.addEventListener('mouseleave', () => tip.classList.remove('visible'));
+});
+
+// ── Funnel ─────────────────────────────────────────────────────────────
+const funnelData = [
+  { label: 'Accounts Onboarded',      count: 72,  color: '#0176D3', tip: "72 FSC accounts completed Premier Onboarding in FYTD'27" },
+  { label: 'Guide Engagement',         count: 8,   color: '#1B96FF', tip: '8 accounts (11%) completed a Guide engagement session (Column G, FSC sheet)' },
+  { label: 'Foundational Features',    count: 43,  color: '#2E844A', tip: '43 accounts (60%) have at least one foundational FSC feature activated' },
+  { label: 'PSL Activation',           count: 28,  color: '#DD7A01', tip: '28 accounts (39%) have activated their provisioned seat licenses' },
+  { label: 'Salesforce Go Access',     count: 14,  color: '#9050E9', tip: '14 accounts (19%) have enabled Salesforce Go access' },
+];
+
+const funnelEl = document.getElementById('funnel-chart');
+const maxW = 100;
+funnelData.forEach((d, i) => {
+  const pct = Math.round(d.count / TOTAL * 100);
+  const widthPct = 55 + (d.count / 72) * 45;
+  const div = document.createElement('div');
+  div.className = 'funnel-step';
+  div.style.cssText = `background:${d.color}; width:${widthPct}%; border-radius:6px;`;
+  div.setAttribute('data-tip', d.tip);
+  div.innerHTML = `
+    <span class="funnel-label">${d.label}</span>
+    <span class="funnel-count">${d.count}</span>
+    <span class="funnel-pct">${pct}%</span>`;
+  div.addEventListener('mouseenter', e => {
+    tip.textContent = d.tip;
+    tip.classList.add('visible');
+  });
+  div.addEventListener('mousemove', e => {
+    tip.style.left = (e.clientX + 14) + 'px';
+    tip.style.top = (e.clientY - 8) + 'px';
+  });
+  div.addEventListener('mouseleave', () => tip.classList.remove('visible'));
+  funnelEl.appendChild(div);
+});
+
+// ── PSL Chart ─────────────────────────────────────────────────────────
+function makeHbar(containerId, rows, color, max) {
+  const container = document.getElementById(containerId);
+  rows.forEach(r => {
+    const pct = Math.round(r.value / (max || 100) * 100);
+    container.innerHTML += `
+      <div class="hbar-row">
+        <div class="hbar-header">
+          <span class="hbar-label">${r.label}</span>
+          <span class="hbar-value">${r.display || r.value + '%'}</span>
+        </div>
+        <div class="hbar-track">
+          <div class="hbar-fill" style="width:${r.value}%; background:${color};"
+               data-tooltip="${r.tooltip || r.label + ': ' + r.value + '%'}"></div>
+        </div>
+      </div>`;
+  });
+}
+
+makeHbar('psl-chart', [
+  { label: 'Overall PSL Activation',    value: 39, tooltip: '39% average PSL activation across all 72 accounts' },
+  { label: 'With Guide Engagement (8)',  value: 59, tooltip: '~59% avg PSL activation rate for guide-engaged accounts (8)' },
+  { label: 'Without Guide (64)',         value: 37, tooltip: '~37% avg PSL activation rate for non-guide accounts (64)' },
+  { label: 'Utilization Rate (Live)',    value: 84, tooltip: '84% utilization rate among the 45 live accounts' },
+], '#0176D3');
+
+// ── Mini metrics in group cards ────────────────────────────────────────
+function buildMiniMetrics(id, group, color) {
+  const el = document.getElementById(id);
+  const rows = [
+    { label: 'PSL Activation',        val: Math.round(group.psl / group.total * 100) },
+    { label: 'SF Go Access',           val: Math.round(group.sfgo / group.total * 100) },
+    { label: 'Features Activated',     val: Math.round(group.features / group.total * 100) },
+  ];
+  rows.forEach(r => {
+    el.innerHTML += `
+      <div class="mini-metric-row">
+        <span class="mini-metric-label">${r.label}</span>
+        <div class="mini-metric-bar-track">
+          <div class="mini-metric-fill ${id === 'guide-metrics' ? 'guide-bar' : ''}" style="width:${r.val}%; background:${color};"></div>
+        </div>
+        <span class="mini-metric-val" style="color:${color};">${r.val}%</span>
+      </div>`;
+  });
+}
+buildMiniMetrics('guide-metrics', GUIDE_GROUP, '#0176D3');
+buildMiniMetrics('noguide-metrics', NOGUIDE_GROUP, '#8E8E8E');
+
+// ── Grouped Bar Chart ──────────────────────────────────────────────────
+const barData = [
+  { label: 'Features\nActivated',   guide: 70, noguide: 34 },
+  { label: 'PSL\nActivation',       guide: 45, noguide: 27 },
+  { label: 'SF Go\nAccess',         guide: 28, noguide: 0  },
+  { label: 'CSAT\n(×20 scale)',     guide: 90, noguide: 80 },
+];
+const barLabels = ['Foundational Features', 'PSL Activation', 'SF Go Access', 'CSAT (×20)'];
+const barGuide =   [88, 59, 25, 94];   // CSAT 4.7 × 20 = 94
+const barNoGuide = [56, 37, 19, 96];   // CSAT 4.8 × 20 = 96
+const barTips = [
+  ['7 / 8 accounts (88%) have foundational features activated', '36 / 64 accounts (56%) have foundational features activated'],
+  ['59% avg PSL activation rate for guide-engaged accounts (8)', '37% avg PSL activation rate for non-guide accounts (64)'],
+  ['2 / 8 accounts (25%) have SF Go features active', '12 / 64 accounts (19%) have SF Go features active'],
+  ['CSAT avg 4.7/5 — 3 ratings from guide accounts', 'CSAT avg 4.8/5 overall (guide accounts have small sample)'],
+];
+
+const barContainer = document.getElementById('grouped-bar-container');
+const maxVal = 100;
+const chartHeight = 200;
+
+let html = `<div style="display:flex; align-items:flex-start; gap:0;">
+  <div style="position:relative; flex:1;">
+    <div class="bar-group-chart" id="bar-group">`;
+
+barLabels.forEach((lbl, i) => {
+  const gh = Math.round((barGuide[i] / maxVal) * (chartHeight - 32));
+  const nh = Math.round((barNoGuide[i] / maxVal) * (chartHeight - 32));
+  html += `
+    <div class="bar-cluster">
+      <div class="bar-cluster-bars">
+        <div class="bar-single guide-bar" style="height:${gh}px;"
+             onmouseenter="showTip(event,'${barTips[i][0]}')" onmouseleave="hideTip()">
+          <div style="position:absolute; top:-20px; left:50%; transform:translateX(-50%); font-size:11px; font-weight:700; color:#0176D3; white-space:nowrap;">${barGuide[i]}%</div>
+        </div>
+        <div class="bar-single noguide-bar" style="height:${Math.max(nh, 2)}px;"
+             onmouseenter="showTip(event,'${barTips[i][1]}')" onmouseleave="hideTip()">
+          <div style="position:absolute; top:-20px; left:50%; transform:translateX(-50%); font-size:11px; font-weight:700; color:#8E8E8E; white-space:nowrap;">${barNoGuide[i]}%</div>
+        </div>
+      </div>
+      <div class="bar-cluster-label">${lbl}</div>
+    </div>`;
+});
+
+html += `</div></div></div>`;
+barContainer.innerHTML = html;
+
+// CSAT distribution — overall (all 72 accounts, 4.8 avg)
+makeHbar('csat-noguide-dist', [
+  { label: '5 Stars ★★★★★', value: 75, tooltip: 'Majority of rated accounts gave 5/5' },
+  { label: '4 Stars ★★★★☆', value: 16, tooltip: '~16% rated 4/5' },
+  { label: '3 Stars ★★★☆☆', value: 6, tooltip: '~6% rated 3/5' },
+  { label: '1–2 Stars',       value: 3, tooltip: '~3% rated below 3/5' },
+], '#2E844A');
+
+// ── Tab switching ──────────────────────────────────────────────────────
+function showTab(id) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function showTip(e, text) {
+  tip.textContent = text;
+  tip.classList.add('visible');
+  tip.style.left = (e.clientX + 14) + 'px';
+  tip.style.top = (e.clientY - 8) + 'px';
+}
+function hideTip() { tip.classList.remove('visible'); }
+
+// Animate bars on load
+setTimeout(() => {
+  document.querySelectorAll('.hbar-fill').forEach(el => {
+    const w = el.style.width;
+    el.style.width = '0';
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => { el.style.width = w; });
+    });
+  });
+}, 100);
+
+// Tooltip for all tiles
+document.querySelectorAll('.tile').forEach(el => {
+  if (!el.getAttribute('data-tip')) return;
+  el.addEventListener('mouseenter', e => {
+    tip.textContent = el.getAttribute('data-tip');
+    tip.classList.add('visible');
+  });
+  el.addEventListener('mousemove', e => {
+    tip.style.left = (e.clientX + 14) + 'px';
+    tip.style.top = (e.clientY - 8) + 'px';
+  });
+  el.addEventListener('mouseleave', () => tip.classList.remove('visible'));
+});
+</script>
+</body>
+</html>
