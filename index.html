@@ -264,10 +264,59 @@ body{
 }
 .tipbox.on{display:block}
 
+/* ── CASE TABLE ── */
+.case-table{width:100%;border-collapse:collapse;font-size:12px}
+.case-table th{
+  background:var(--gray-10);padding:9px 12px;
+  text-align:left;font-size:10px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.06em;color:var(--gray-50);
+  border-bottom:2px solid var(--border);white-space:nowrap;
+}
+.case-table td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:middle}
+.case-table tr:last-child td{border-bottom:none}
+.case-table tr:hover td{background:#FAFAFA}
+.scope-yes{
+  display:inline-flex;align-items:center;gap:4px;
+  padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700;
+  background:#EEF5EE;color:#2E844A;white-space:nowrap;
+}
+.scope-no{
+  display:inline-flex;align-items:center;gap:4px;
+  padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700;
+  background:#FEF3E2;color:#BA0517;white-space:nowrap;
+}
+.guide-dot{
+  display:inline-block;width:8px;height:8px;border-radius:50%;
+  margin-right:4px;vertical-align:middle;
+}
+.theme-pill{
+  display:inline-flex;padding:2px 8px;border-radius:10px;
+  font-size:11px;font-weight:600;white-space:nowrap;
+}
+.tp-access{background:#EEF4FF;color:#0176D3}
+.tp-howto{background:#F5F0FF;color:#9050E9}
+
+/* ── SCOPE HERO ── */
+.scope-hero{
+  display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:24px;
+}
+.scope-block{
+  border-radius:10px;padding:24px;text-align:center;border:2px solid;
+}
+.scope-in{background:linear-gradient(135deg,#EEF5EE,#F8FFF8);border-color:#2E844A}
+.scope-out{background:linear-gradient(135deg,#FFF5F5,#FFF8F0);border-color:#BA0517}
+.scope-num{font-size:52px;font-weight:900;line-height:1;margin:8px 0 4px}
+.scope-in .scope-num{color:#2E844A}
+.scope-out .scope-num{color:#BA0517}
+.scope-label{font-size:13px;font-weight:700;margin-bottom:4px}
+.scope-in .scope-label{color:#2E844A}
+.scope-out .scope-label{color:#BA0517}
+.scope-desc{font-size:12px;color:var(--gray-50);line-height:1.5}
+
 /* ── RESPONSIVE ── */
 @media(max-width:960px){
   .tiles{grid-template-columns:repeat(3,1fr)}
-  .row2,.cmp-grid,.row3{grid-template-columns:1fr}
+  .row2,.cmp-grid,.row3,.scope-hero{grid-template-columns:1fr}
   .hdr,.tabs,.page{padding-left:16px;padding-right:16px}
   .narrative-hero{flex-direction:column;gap:16px}
   .nh-divider{display:none}
@@ -291,6 +340,7 @@ body{
 <div class="tabs">
   <button class="tab-btn active" onclick="showTab('overview',this)">Program Overview</button>
   <button class="tab-btn" onclick="showTab('guide',this)">Guide Engagement Impact</button>
+  <button class="tab-btn" onclick="showTab('cases',this)">Support Case Analysis</button>
 </div>
 
 <!-- ══════════════════════════════════════════
@@ -495,7 +545,206 @@ body{
 
 </div><!-- /tab-guide -->
 
-<script>
+<!-- ══════════════════════════════════════════
+     TAB 3 — SUPPORT CASE ANALYSIS
+══════════════════════════════════════════ -->
+<div class="page" id="tab-cases">
+
+  <!-- KPI Tiles -->
+  <div class="tiles" style="grid-template-columns:repeat(5,1fr)">
+    <div class="tile t-blue" data-tip="8 FSC support cases analyzed from post-onboarding support data (Cases Theme Analysis spreadsheet, Onboarding Scope sheet).">
+      <div class="tile-num">8</div>
+      <div class="tile-lbl">FSC Cases Analyzed</div>
+      <div class="tile-sub">Post-onboarding support</div>
+    </div>
+    <div class="tile t-gray" data-tip="5 unique FSC accounts raised at least one support case post-onboarding: Delta Dental, Guardian Life, BANCO LAFISE, FundSERV Inc, The Bankers Bank.">
+      <div class="tile-num">5</div>
+      <div class="tile-lbl">Accounts Affected</div>
+      <div class="tile-sub">of 72 onboarded</div>
+    </div>
+    <div class="tile t-green" data-tip="Only 1 of 8 FSC cases (The Bankers Bank — FSC referral data model) falls within standard Onboarding team scope and can be resolved without engineering escalation.">
+      <div class="tile-num">1</div>
+      <div class="tile-lbl">Within Onboarding Scope</div>
+      <div class="tile-sub">12.5% of cases</div>
+    </div>
+    <div class="tile t-orange" data-tip="7 of 8 FSC cases are product defects or require engineering / product team involvement — outside what the Onboarding team can resolve independently.">
+      <div class="tile-num">7</div>
+      <div class="tile-lbl">Need Engineering Fix</div>
+      <div class="tile-sub">87.5% of cases</div>
+    </div>
+    <div class="tile t-purple" data-tip="7 of 8 FSC support cases came from accounts that had a Guide engagement session — showing guide-engaged accounts are still encountering product-level issues post-onboarding.">
+      <div class="tile-num">7</div>
+      <div class="tile-lbl">Guide-Engaged Accounts</div>
+      <div class="tile-sub">raised these cases</div>
+    </div>
+  </div>
+
+  <!-- Scope breakdown hero -->
+  <div class="sec-lbl">Onboarding team scope determination</div>
+  <div class="scope-hero">
+    <div class="scope-block scope-out">
+      <div style="font-size:13px;font-weight:700;color:#BA0517;margin-bottom:6px">⚠ Not in Onboarding Scope</div>
+      <div class="scope-num">7</div>
+      <div class="scope-label">Product Defect / Engineering</div>
+      <div class="scope-desc">Cases require engineering escalation or product team involvement. Onboarding team can document, triage, and advocate — but cannot resolve.</div>
+    </div>
+    <div class="scope-block scope-in">
+      <div style="font-size:13px;font-weight:700;color:#2E844A;margin-bottom:6px">✓ Within Onboarding Scope</div>
+      <div class="scope-num">1</div>
+      <div class="scope-label">Standard Onboarding Guidance</div>
+      <div class="scope-desc">The Bankers Bank — FSC referral data model question. Resolvable via standard onboarding guidance and documentation provided by the Onboarding team.</div>
+    </div>
+  </div>
+
+  <!-- Charts row: Theme + Guide impact -->
+  <div class="row2">
+    <!-- Theme breakdown -->
+    <div class="card">
+      <div class="card-title">Case Theme Breakdown</div>
+      <div class="card-sub">8 FSC cases categorized by primary support theme</div>
+      <div id="theme-chart" class="hbar-list" style="margin-top:8px"></div>
+      <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border)">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--gray-50);margin-bottom:10px">Scope by Theme</div>
+        <div style="display:flex;flex-direction:column;gap:8px;font-size:12px">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="color:#0176D3;font-weight:600">Access / Permissions (4)</span>
+            <span class="scope-no">0 in scope · 4 engineering</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="color:#9050E9;font-weight:600">How-to / Configuration (4)</span>
+            <span style="display:flex;gap:6px">
+              <span class="scope-yes">1 in scope</span>
+              <span class="scope-no">3 engineering</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Guide engagement impact on cases -->
+    <div class="card">
+      <div class="card-title">Guide Engagement Among Case Raisers</div>
+      <div class="card-sub">Cases raised by guide-engaged vs non-guide FSC accounts</div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:16px;padding:12px 0">
+        <svg width="160" height="160" viewBox="0 0 160 160" id="guide-donut"></svg>
+        <div style="display:flex;gap:24px;font-size:12px">
+          <div style="display:flex;align-items:center;gap:6px">
+            <div style="width:12px;height:12px;border-radius:50%;background:#0176D3;flex-shrink:0"></div>
+            <span>Guide-engaged: <strong>7</strong></span>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px">
+            <div style="width:12px;height:12px;border-radius:50%;background:#AAAAAA;flex-shrink:0"></div>
+            <span>No guide: <strong>1</strong></span>
+          </div>
+        </div>
+        <div style="background:#FEF3E2;border-radius:8px;padding:12px 16px;font-size:12px;line-height:1.6;color:#744400;max-width:340px;text-align:center">
+          <strong>Insight:</strong> Guide-engaged accounts still raise product-defect cases —
+          guide sessions help adoption but cannot compensate for underlying product issues.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Case Detail Table -->
+  <div class="card" style="padding:0;overflow:hidden">
+    <div style="padding:18px 20px 12px;display:flex;align-items:baseline;gap:16px">
+      <div>
+        <div class="card-title">FSC Case Detail</div>
+        <div class="card-sub">All 8 FSC cases from post-onboarding support analysis</div>
+      </div>
+    </div>
+    <div style="overflow-x:auto">
+    <table class="case-table">
+      <thead>
+        <tr>
+          <th>Account</th>
+          <th>Case #</th>
+          <th>Theme</th>
+          <th>Subject</th>
+          <th>Product / Topic</th>
+          <th>Guide</th>
+          <th>Scope Determination</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-tip="Delta Dental raised 4 FSC cases — all are product defects in Revenue Cloud and Health Cloud components. Guide-engaged account.">
+          <td><strong>Delta Dental of California</strong><div style="font-size:10px;color:#747474">SMB Broker Portal</div></td>
+          <td><a href="https://orgcs.lightning.force.com/lightning/r/Case/500Hx00001FmZQ6IAP/view" style="color:#0176D3;text-decoration:none;font-size:11px">473949206</a></td>
+          <td><span class="theme-pill tp-access">Access / Permissions</span></td>
+          <td style="max-width:220px;font-size:11px">Non-admin cannot read GroupCensus/Surcharge in Quote pricing context</td>
+          <td style="font-size:11px;color:#747474">Revenue Cloud · Price Management</td>
+          <td><span class="guide-dot" style="background:#0176D3"></span>Yes</td>
+          <td><span class="scope-no">✗ Product Defect</span></td>
+        </tr>
+        <tr data-tip="CoverageType object visibility issue — product-level bug in Health & Insurance component. Guide-engaged account.">
+          <td><strong>Delta Dental of California</strong><div style="font-size:10px;color:#747474">SMB Broker Portal</div></td>
+          <td><a href="https://orgcs.lightning.force.com/lightning/r/Case/500Hx00001Fj7SVIAS/view" style="color:#0176D3;text-decoration:none;font-size:11px">473941017</a></td>
+          <td><span class="theme-pill tp-access">Access / Permissions</span></td>
+          <td style="max-width:220px;font-size:11px">CoverageType object visibility issue</td>
+          <td style="font-size:11px;color:#747474">Industry · Health &amp; Insurance</td>
+          <td><span class="guide-dot" style="background:#0176D3"></span>Yes</td>
+          <td><span class="scope-no">✗ Product Defect</span></td>
+        </tr>
+        <tr data-tip="Delta Dental How-to case — asking about OmniStudio components shipped with Digital Insurance. Product defect/documentation gap.">
+          <td><strong>Delta Dental of California</strong><div style="font-size:10px;color:#747474">SMB Broker Portal</div></td>
+          <td><a href="https://orgcs.lightning.force.com/lightning/r/Case/500Hx00001FhU3EIAU/view" style="color:#0176D3;text-decoration:none;font-size:11px">473928911</a></td>
+          <td><span class="theme-pill tp-howto">How-to / Config</span></td>
+          <td style="max-width:220px;font-size:11px">List of prebuilt OmniStudio / LWC components shipped with Digital Insurance for Health Cloud</td>
+          <td style="font-size:11px;color:#747474">Industry · Health Cloud</td>
+          <td><span class="guide-dot" style="background:#0176D3"></span>Yes</td>
+          <td><span class="scope-no">✗ Product Defect</span></td>
+        </tr>
+        <tr data-tip="ARM Salesforce Pricing bug — field limit exceeded on QuoteLineItem delete. Engineering issue. Guide-engaged account.">
+          <td><strong>Delta Dental of California</strong><div style="font-size:10px;color:#747474">SMB Broker Portal</div></td>
+          <td><a href="https://orgcs.lightning.force.com/lightning/r/Case/500Hx00001FmZQ6IAP/view" style="color:#0176D3;text-decoration:none;font-size:11px">473949231</a></td>
+          <td><span class="theme-pill tp-howto">How-to / Config</span></td>
+          <td style="max-width:220px;font-size:11px">ARM Pricing generates PriceWaterfallIdentifier over 80-char limit on QuoteLineItem delete</td>
+          <td style="font-size:11px;color:#747474">Revenue Cloud · Price Management</td>
+          <td><span class="guide-dot" style="background:#0176D3"></span>Yes</td>
+          <td><span class="scope-no">✗ Product Defect</span></td>
+        </tr>
+        <tr data-tip="Guardian Life — MFA waiver for exempt users system permission issue. Product defect in Mandatory Security Controls. Guide-engaged.">
+          <td><strong>The Guardian Life Insurance</strong><div style="font-size:10px;color:#747474">Company of America</div></td>
+          <td><a href="https://orgcs.lightning.force.com/lightning/r/Case/500Hx00001ISEqDIAX/view" style="color:#0176D3;text-decoration:none;font-size:11px">474099614</a></td>
+          <td><span class="theme-pill tp-access">Access / Permissions</span></td>
+          <td style="max-width:220px;font-size:11px">Waive Multi-Factor Authentication for Exempt Users system permission issue</td>
+          <td style="font-size:11px;color:#747474">Industry · Mandatory Security Controls</td>
+          <td><span class="guide-dot" style="background:#0176D3"></span>Yes</td>
+          <td><span class="scope-no">✗ Product Defect</span></td>
+        </tr>
+        <tr data-tip="BANCO LAFISE — CSV File Import error. ImportCsvLabels.ErrorMessage label missing. Product defect, not onboarding resolvable. Guide-engaged.">
+          <td><strong>BANCO LAFISE</strong></td>
+          <td><a href="https://orgcs.lightning.force.com/lightning/r/Case/500hi0000006YsNAAU/view" style="color:#0176D3;text-decoration:none;font-size:11px">474792912</a></td>
+          <td><span class="theme-pill tp-howto">How-to / Config</span></td>
+          <td style="max-width:220px;font-size:11px">Error loading cases with CSV File Import — ImportCsvLabels.ErrorMessage does not exist</td>
+          <td style="font-size:11px;color:#747474">Industry · Retail and Consumer Goods</td>
+          <td><span class="guide-dot" style="background:#0176D3"></span>Yes</td>
+          <td><span class="scope-no">✗ Product Defect</span></td>
+        </tr>
+        <tr style="background:#FAFFF8" data-tip="The Bankers Bank — FSC referral data model question. THIS is the only case within standard Onboarding scope — resolved via standard guidance. Guide-engaged.">
+          <td><strong>The Bankers Bank</strong></td>
+          <td><a href="https://orgcs.lightning.force.com/lightning/r/Case/500Hx00001GYlFAIA/view" style="color:#0176D3;text-decoration:none;font-size:11px">473976341</a></td>
+          <td><span class="theme-pill tp-howto">How-to / Config</span></td>
+          <td style="max-width:220px;font-size:11px">Need referral data model for Financial Services Cloud</td>
+          <td style="font-size:11px;color:#747474">Industry · Financial Services</td>
+          <td><span class="guide-dot" style="background:#0176D3"></span>Yes</td>
+          <td><span class="scope-yes">✓ Onboarding Scope</span></td>
+        </tr>
+        <tr data-tip="FundSERV Inc — unable to access CSM workspace content sharing. Product defect in Education Cloud component. Not guide-engaged.">
+          <td><strong>FundSERV Inc</strong></td>
+          <td><a href="https://orgcs.lightning.force.com/lightning/r/Case/500hi000004GdA3AAI/view" style="color:#0176D3;text-decoration:none;font-size:11px">474752436</a></td>
+          <td><span class="theme-pill tp-access">Access / Permissions</span></td>
+          <td style="max-width:220px;font-size:11px">User unable to access CSM workspace content sharing</td>
+          <td style="font-size:11px;color:#747474">Industry · Education Cloud</td>
+          <td><span class="guide-dot" style="background:#AAAAAA"></span>No</td>
+          <td><span class="scope-no">✗ Product Defect</span></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+</div><!-- /tab-cases -->
 // ── Tooltip ──────────────────────────────────────────────────────────
 const tip = document.getElementById('tip');
 function showTip(e,text){ tip.textContent=text; tip.classList.add('on'); moveTip(e); }
@@ -579,6 +828,79 @@ BARS.forEach(d=>{
     </div>`;
   gbar.appendChild(cluster);
 });
+
+// ── Theme chart (Tab 3) ───────────────────────────────────────────────
+const THEMES = [
+  {label:'Access / Permissions', value:4, pct:50, color:'#0176D3',
+   tip:'4 FSC cases: non-admin visibility, object access, MFA permissions, CSM workspace — all product defects'},
+  {label:'How-to / Configuration', value:4, pct:50, color:'#9050E9',
+   tip:'4 FSC cases: referral data model, OmniStudio components, CSV import error, pricing field limit — 1 in-scope'},
+];
+const themeEl = document.getElementById('theme-chart');
+THEMES.forEach(d=>{
+  const row = document.createElement('div');
+  row.className='hbar-row';
+
+  const hd = document.createElement('div');
+  hd.className='hbar-hd';
+  const lbl = document.createElement('span');
+  lbl.className='hbar-lbl';
+  lbl.textContent=d.label;
+  const val = document.createElement('span');
+  val.className='hbar-val';
+  val.textContent=d.value+' cases · '+d.pct+'%';
+  hd.appendChild(lbl);
+  hd.appendChild(val);
+
+  const track = document.createElement('div');
+  track.className='hbar-track';
+  const fill = document.createElement('div');
+  fill.className='hbar-fill';
+  fill.style.cssText='width:'+d.pct+'%;background:'+d.color;
+  track.appendChild(fill);
+
+  row.appendChild(hd);
+  row.appendChild(track);
+  row.addEventListener('mouseenter',e=>showTip(e,d.tip));
+  row.addEventListener('mousemove',moveTip);
+  row.addEventListener('mouseleave',hideTip);
+  themeEl.appendChild(row);
+});
+
+// ── Guide donut (Tab 3) ───────────────────────────────────────────────
+(function(){
+  const svg = document.getElementById('guide-donut');
+  if(!svg) return;
+  const cx=80,cy=80,r=60,stroke=20;
+  const slices=[{val:7,color:'#0176D3'},{val:1,color:'#AAAAAA'}];
+  const total=8;
+  let angle=-Math.PI/2;
+  slices.forEach(s=>{
+    const sweep = (s.val/total)*2*Math.PI;
+    const x1=cx+r*Math.cos(angle), y1=cy+r*Math.sin(angle);
+    angle+=sweep;
+    const x2=cx+r*Math.cos(angle), y2=cy+r*Math.sin(angle);
+    const large=sweep>Math.PI?1:0;
+    const path=document.createElementNS('http://www.w3.org/2000/svg','path');
+    path.setAttribute('d','M '+cx+' '+cy+' L '+x1+' '+y1+' A '+r+' '+r+' 0 '+large+' 1 '+x2+' '+y2+' Z');
+    path.setAttribute('fill',s.color);
+    svg.appendChild(path);
+  });
+  const hole=document.createElementNS('http://www.w3.org/2000/svg','circle');
+  hole.setAttribute('cx',cx);hole.setAttribute('cy',cy);
+  hole.setAttribute('r',r-stroke);hole.setAttribute('fill','#fff');
+  svg.appendChild(hole);
+  const t1=document.createElementNS('http://www.w3.org/2000/svg','text');
+  t1.setAttribute('x',cx);t1.setAttribute('y',cy-6);
+  t1.setAttribute('text-anchor','middle');t1.setAttribute('font-size','18');
+  t1.setAttribute('font-weight','800');t1.setAttribute('fill','#0176D3');
+  t1.textContent='88%';svg.appendChild(t1);
+  const t2=document.createElementNS('http://www.w3.org/2000/svg','text');
+  t2.setAttribute('x',cx);t2.setAttribute('y',cy+12);
+  t2.setAttribute('text-anchor','middle');t2.setAttribute('font-size','10');
+  t2.setAttribute('fill','#747474');
+  t2.textContent='guide-engaged';svg.appendChild(t2);
+})();
 
 // ── Animate bars on load ──────────────────────────────────────────────
 setTimeout(()=>{
