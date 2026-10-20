@@ -296,6 +296,9 @@ body{
 }
 .tp-access{background:#EEF4FF;color:#0176D3}
 .tp-howto{background:#F5F0FF;color:#9050E9}
+.tp-perm{background:#E6F9F8;color:#06A59A}
+.tp-prov{background:#F5F0FF;color:#9050E9}
+.tp-setup{background:#EEF4FF;color:#0176D3}
 
 /* ── SCOPE HERO ── */
 .scope-hero{
@@ -553,47 +556,47 @@ body{
 
   <!-- KPI Tiles -->
   <div class="tiles" style="grid-template-columns:repeat(5,1fr)">
-    <div class="tile t-blue" data-tip="8 FSC support cases analyzed from post-onboarding support data (Cases Theme Analysis spreadsheet, Onboarding Scope sheet).">
-      <div class="tile-num">8</div>
+    <div class="tile t-blue" data-tip="15 FSC support cases from the Cases Theme Analysis spreadsheet — Analysis sheet, filtered for Financial Services Cloud.">
+      <div class="tile-num">15</div>
       <div class="tile-lbl">FSC Cases Analyzed</div>
       <div class="tile-sub">Post-onboarding support</div>
     </div>
-    <div class="tile t-gray" data-tip="5 unique FSC accounts raised at least one support case post-onboarding: Delta Dental, Guardian Life, BANCO LAFISE, FundSERV Inc, The Bankers Bank.">
-      <div class="tile-num">5</div>
+    <div class="tile t-gray" data-tip="9 unique FSC accounts raised at least one support case post-onboarding out of 72 total onboarded accounts.">
+      <div class="tile-num">9</div>
       <div class="tile-lbl">Accounts Affected</div>
       <div class="tile-sub">of 72 onboarded</div>
     </div>
-    <div class="tile t-green" data-tip="Only 1 of 8 FSC cases (The Bankers Bank — FSC referral data model) falls within standard Onboarding team scope and can be resolved without engineering escalation.">
-      <div class="tile-num">1</div>
-      <div class="tile-lbl">Within Onboarding Scope</div>
-      <div class="tile-sub">12.5% of cases</div>
+    <div class="tile t-green" data-tip="10 of 15 FSC cases (67%) are provisioning, license setup, or how-to questions that could have been proactively addressed during onboarding — primarily from accounts with no guide engagement.">
+      <div class="tile-num">10</div>
+      <div class="tile-lbl">Onboarding Scope</div>
+      <div class="tile-sub">67% — guidance gap</div>
     </div>
-    <div class="tile t-orange" data-tip="7 of 8 FSC cases are product defects or require engineering / product team involvement — outside what the Onboarding team can resolve independently.">
-      <div class="tile-num">7</div>
-      <div class="tile-lbl">Need Engineering Fix</div>
-      <div class="tile-sub">87.5% of cases</div>
+    <div class="tile t-orange" data-tip="5 of 15 FSC cases (33%) are true product defects — concentrated in Delta Dental's Revenue Cloud Configurator and Price Management components. Engineering escalation required.">
+      <div class="tile-num">5</div>
+      <div class="tile-lbl">Break-Fix / Defect</div>
+      <div class="tile-sub">33% — engineering needed</div>
     </div>
-    <div class="tile t-purple" data-tip="7 of 8 FSC support cases came from accounts that had a Guide engagement session — showing guide-engaged accounts are still encountering product-level issues post-onboarding.">
-      <div class="tile-num">7</div>
-      <div class="tile-lbl">Guide-Engaged Accounts</div>
-      <div class="tile-sub">raised these cases</div>
+    <div class="tile t-purple" data-tip="8 of 15 FSC cases came from guide-engaged accounts (Delta Dental + GTE Financial). Their break-fix cases are product defects — guide engagement does not prevent product bugs but reduces guidance gaps.">
+      <div class="tile-num">8</div>
+      <div class="tile-lbl">Guide-Engaged Cases</div>
+      <div class="tile-sub">53% of all cases</div>
     </div>
   </div>
 
   <!-- Scope breakdown hero -->
   <div class="sec-lbl">Onboarding team scope determination</div>
   <div class="scope-hero">
-    <div class="scope-block scope-out">
-      <div style="font-size:13px;font-weight:700;color:#BA0517;margin-bottom:6px">⚠ Not in Onboarding Scope</div>
-      <div class="scope-num">7</div>
-      <div class="scope-label">Product Defect / Engineering</div>
-      <div class="scope-desc">Cases require engineering escalation or product team involvement. Onboarding team can document, triage, and advocate — but cannot resolve.</div>
-    </div>
     <div class="scope-block scope-in">
-      <div style="font-size:13px;font-weight:700;color:#2E844A;margin-bottom:6px">✓ Within Onboarding Scope</div>
-      <div class="scope-num">1</div>
-      <div class="scope-label">Standard Onboarding Guidance</div>
-      <div class="scope-desc">The Bankers Bank — FSC referral data model question. Resolvable via standard onboarding guidance and documentation provided by the Onboarding team.</div>
+      <div style="font-size:13px;font-weight:700;color:#2E844A;margin-bottom:6px">&#x2713; Within Onboarding Scope</div>
+      <div class="scope-num">10</div>
+      <div class="scope-label">67% &mdash; Guidance &amp; Configuration Gap</div>
+      <div class="scope-desc">Provisioning setup, license configuration, account management, and how-to questions &mdash; mostly from accounts with no guide engagement. Better onboarding coverage could prevent these cases.</div>
+    </div>
+    <div class="scope-block scope-out">
+      <div style="font-size:13px;font-weight:700;color:#BA0517;margin-bottom:6px">&#x26A0; Break-Fix / Product Defect</div>
+      <div class="scope-num">5</div>
+      <div class="scope-label">33% &mdash; Engineering Required</div>
+      <div class="scope-desc">Delta Dental's Revenue Cloud Configurator and Price Management issues &mdash; true product defects. Guide engagement was already in place; these require engineering escalation regardless of onboarding quality.</div>
     </div>
   </div>
 
@@ -602,27 +605,34 @@ body{
     <!-- Theme breakdown -->
     <div class="card">
       <div class="card-title">Case Theme Breakdown</div>
-      <div class="card-sub">8 FSC cases categorized by primary support theme</div>
+      <div class="card-sub">15 FSC cases by primary support theme</div>
       <div id="theme-chart" class="hbar-list" style="margin-top:8px"></div>
       <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border)">
         <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--gray-50);margin-bottom:10px">Scope by Theme</div>
         <div style="display:flex;flex-direction:column;gap:8px;font-size:12px">
           <div style="display:flex;justify-content:space-between;align-items:center">
-            <span style="color:#0176D3;font-weight:600">Access / Permissions (4)</span>
-            <span class="scope-no">0 in scope · 4 engineering</span>
+            <span style="color:#9050E9;font-weight:600">Provisioning &amp; Access (7)</span>
+            <span style="display:flex;gap:6px">
+              <span class="scope-yes">6 in scope</span>
+              <span class="scope-no">1 defect</span>
+            </span>
           </div>
           <div style="display:flex;justify-content:space-between;align-items:center">
-            <span style="color:#9050E9;font-weight:600">How-to / Configuration (4)</span>
+            <span style="color:#0176D3;font-weight:600">Setup &amp; Configuration (7)</span>
             <span style="display:flex;gap:6px">
-              <span class="scope-yes">1 in scope</span>
-              <span class="scope-no">3 engineering</span>
+              <span class="scope-yes">3 in scope</span>
+              <span class="scope-no">4 defects</span>
             </span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="color:#06A59A;font-weight:600">Permissions &amp; Security (1)</span>
+            <span class="scope-yes">1 in scope</span>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Guide engagement impact on cases -->
+    <!-- Guide engagement -->
     <div class="card">
       <div class="card-title">Guide Engagement Among Case Raisers</div>
       <div class="card-sub">Cases raised by guide-engaged vs non-guide FSC accounts</div>
@@ -631,16 +641,16 @@ body{
         <div style="display:flex;gap:24px;font-size:12px">
           <div style="display:flex;align-items:center;gap:6px">
             <div style="width:12px;height:12px;border-radius:50%;background:#0176D3;flex-shrink:0"></div>
-            <span>Guide-engaged: <strong>7</strong></span>
+            <span>Guide-engaged: <strong>8</strong></span>
           </div>
           <div style="display:flex;align-items:center;gap:6px">
             <div style="width:12px;height:12px;border-radius:50%;background:#AAAAAA;flex-shrink:0"></div>
-            <span>No guide: <strong>1</strong></span>
+            <span>No guide: <strong>7</strong></span>
           </div>
         </div>
         <div style="background:#FEF3E2;border-radius:8px;padding:12px 16px;font-size:12px;line-height:1.6;color:#744400;max-width:340px;text-align:center">
-          <strong>Insight:</strong> Guide-engaged accounts still raise product-defect cases —
-          guide sessions help adoption but cannot compensate for underlying product issues.
+          <strong>Pattern:</strong> Non-guide accounts (7 cases) are almost entirely guidance gaps fixable during onboarding.
+          Guide-engaged cases include Delta Dental's product defects &mdash; guide cannot prevent engineering issues.
         </div>
       </div>
     </div>
@@ -648,11 +658,9 @@ body{
 
   <!-- Case Detail Table -->
   <div class="card" style="padding:0;overflow:hidden">
-    <div style="padding:18px 20px 12px;display:flex;align-items:baseline;gap:16px">
-      <div>
-        <div class="card-title">FSC Case Detail</div>
-        <div class="card-sub">All 8 FSC cases from post-onboarding support analysis</div>
-      </div>
+    <div style="padding:18px 20px 12px">
+      <div class="card-title">FSC Case Detail</div>
+      <div class="card-sub">All 15 FSC cases from the Analysis sheet &mdash; sorted by theme</div>
     </div>
     <div style="overflow-x:auto">
     <table class="case-table">
@@ -661,84 +669,131 @@ body{
           <th>Account</th>
           <th>Case #</th>
           <th>Theme</th>
-          <th>Subject</th>
-          <th>Product / Topic</th>
+          <th>Product / Feature</th>
           <th>Guide</th>
-          <th>Scope Determination</th>
+          <th>Scope</th>
         </tr>
       </thead>
       <tbody>
-        <tr data-tip="Delta Dental raised 4 FSC cases — all are product defects in Revenue Cloud and Health Cloud components. Guide-engaged account.">
+        <tr data-tip="GTE Financial: General how-to question on Security &amp; Activations setup. Guide-engaged. Should be proactively covered in onboarding.">
+          <td><strong>GTE Financial Credit Union</strong></td>
+          <td style="font-size:11px;color:#0176D3;font-weight:600">474537256</td>
+          <td><span class="theme-pill tp-perm">Permissions &amp; Security</span></td>
+          <td style="font-size:11px;color:#747474">Security &amp; Activations &middot; How-to Question</td>
+          <td><span class="guide-dot" style="background:#0176D3"></span>Yes</td>
+          <td><span class="scope-yes">&#x2713; Onboarding Scope</span></td>
+        </tr>
+        <tr data-tip="Delta Dental: Health Cloud account provisioning &mdash; guide-engaged with complex multi-product setup. Provisioning defect given guide was already in place; product issue, not a guidance gap.">
           <td><strong>Delta Dental of California</strong><div style="font-size:10px;color:#747474">SMB Broker Portal</div></td>
-          <td><a href="https://orgcs.lightning.force.com/lightning/r/Case/500Hx00001FmZQ6IAP/view" style="color:#0176D3;text-decoration:none;font-size:11px">473949206</a></td>
-          <td><span class="theme-pill tp-access">Access / Permissions</span></td>
-          <td style="max-width:220px;font-size:11px">Non-admin cannot read GroupCensus/Surcharge in Quote pricing context</td>
-          <td style="font-size:11px;color:#747474">Revenue Cloud · Price Management</td>
+          <td style="font-size:11px;color:#0176D3;font-weight:600">473928911</td>
+          <td><span class="theme-pill tp-prov">Provisioning &amp; Access</span></td>
+          <td style="font-size:11px;color:#747474">Health Cloud &middot; Account Provisioning</td>
           <td><span class="guide-dot" style="background:#0176D3"></span>Yes</td>
-          <td><span class="scope-no">✗ Product Defect</span></td>
+          <td><span class="scope-no">&#x2717; Break-Fix</span></td>
         </tr>
-        <tr data-tip="CoverageType object visibility issue — product-level bug in Health & Insurance component. Guide-engaged account.">
+        <tr data-tip="Delta Dental: FSC license and permissions setup &mdash; standard configuration task. Should be covered during onboarding. Guide-engaged account.">
           <td><strong>Delta Dental of California</strong><div style="font-size:10px;color:#747474">SMB Broker Portal</div></td>
-          <td><a href="https://orgcs.lightning.force.com/lightning/r/Case/500Hx00001Fj7SVIAS/view" style="color:#0176D3;text-decoration:none;font-size:11px">473941017</a></td>
-          <td><span class="theme-pill tp-access">Access / Permissions</span></td>
-          <td style="max-width:220px;font-size:11px">CoverageType object visibility issue</td>
-          <td style="font-size:11px;color:#747474">Industry · Health &amp; Insurance</td>
+          <td style="font-size:11px;color:#0176D3;font-weight:600">473973026</td>
+          <td><span class="theme-pill tp-prov">Provisioning &amp; Access</span></td>
+          <td style="font-size:11px;color:#747474">Financial Services Cloud &middot; License / Permissions</td>
           <td><span class="guide-dot" style="background:#0176D3"></span>Yes</td>
-          <td><span class="scope-no">✗ Product Defect</span></td>
+          <td><span class="scope-yes">&#x2713; Onboarding Scope</span></td>
         </tr>
-        <tr data-tip="Delta Dental How-to case — asking about OmniStudio components shipped with Digital Insurance. Product defect/documentation gap.">
-          <td><strong>Delta Dental of California</strong><div style="font-size:10px;color:#747474">SMB Broker Portal</div></td>
-          <td><a href="https://orgcs.lightning.force.com/lightning/r/Case/500Hx00001FhU3EIAU/view" style="color:#0176D3;text-decoration:none;font-size:11px">473928911</a></td>
-          <td><span class="theme-pill tp-howto">How-to / Config</span></td>
-          <td style="max-width:220px;font-size:11px">List of prebuilt OmniStudio / LWC components shipped with Digital Insurance for Health Cloud</td>
-          <td style="font-size:11px;color:#747474">Industry · Health Cloud</td>
-          <td><span class="guide-dot" style="background:#0176D3"></span>Yes</td>
-          <td><span class="scope-no">✗ Product Defect</span></td>
-        </tr>
-        <tr data-tip="ARM Salesforce Pricing bug — field limit exceeded on QuoteLineItem delete. Engineering issue. Guide-engaged account.">
-          <td><strong>Delta Dental of California</strong><div style="font-size:10px;color:#747474">SMB Broker Portal</div></td>
-          <td><a href="https://orgcs.lightning.force.com/lightning/r/Case/500Hx00001FmZQ6IAP/view" style="color:#0176D3;text-decoration:none;font-size:11px">473949231</a></td>
-          <td><span class="theme-pill tp-howto">How-to / Config</span></td>
-          <td style="max-width:220px;font-size:11px">ARM Pricing generates PriceWaterfallIdentifier over 80-char limit on QuoteLineItem delete</td>
-          <td style="font-size:11px;color:#747474">Revenue Cloud · Price Management</td>
-          <td><span class="guide-dot" style="background:#0176D3"></span>Yes</td>
-          <td><span class="scope-no">✗ Product Defect</span></td>
-        </tr>
-        <tr data-tip="Guardian Life — MFA waiver for exempt users system permission issue. Product defect in Mandatory Security Controls. Guide-engaged.">
-          <td><strong>The Guardian Life Insurance</strong><div style="font-size:10px;color:#747474">Company of America</div></td>
-          <td><a href="https://orgcs.lightning.force.com/lightning/r/Case/500Hx00001ISEqDIAX/view" style="color:#0176D3;text-decoration:none;font-size:11px">474099614</a></td>
-          <td><span class="theme-pill tp-access">Access / Permissions</span></td>
-          <td style="max-width:220px;font-size:11px">Waive Multi-Factor Authentication for Exempt Users system permission issue</td>
-          <td style="font-size:11px;color:#747474">Industry · Mandatory Security Controls</td>
-          <td><span class="guide-dot" style="background:#0176D3"></span>Yes</td>
-          <td><span class="scope-no">✗ Product Defect</span></td>
-        </tr>
-        <tr data-tip="BANCO LAFISE — CSV File Import error. ImportCsvLabels.ErrorMessage label missing. Product defect, not onboarding resolvable. Guide-engaged.">
-          <td><strong>BANCO LAFISE</strong></td>
-          <td><a href="https://orgcs.lightning.force.com/lightning/r/Case/500hi0000006YsNAAU/view" style="color:#0176D3;text-decoration:none;font-size:11px">474792912</a></td>
-          <td><span class="theme-pill tp-howto">How-to / Config</span></td>
-          <td style="max-width:220px;font-size:11px">Error loading cases with CSV File Import — ImportCsvLabels.ErrorMessage does not exist</td>
-          <td style="font-size:11px;color:#747474">Industry · Retail and Consumer Goods</td>
-          <td><span class="guide-dot" style="background:#0176D3"></span>Yes</td>
-          <td><span class="scope-no">✗ Product Defect</span></td>
-        </tr>
-        <tr style="background:#FAFFF8" data-tip="The Bankers Bank — FSC referral data model question. THIS is the only case within standard Onboarding scope — resolved via standard guidance. Guide-engaged.">
-          <td><strong>The Bankers Bank</strong></td>
-          <td><a href="https://orgcs.lightning.force.com/lightning/r/Case/500Hx00001GYlFAIA/view" style="color:#0176D3;text-decoration:none;font-size:11px">473976341</a></td>
-          <td><span class="theme-pill tp-howto">How-to / Config</span></td>
-          <td style="max-width:220px;font-size:11px">Need referral data model for Financial Services Cloud</td>
-          <td style="font-size:11px;color:#747474">Industry · Financial Services</td>
-          <td><span class="guide-dot" style="background:#0176D3"></span>Yes</td>
-          <td><span class="scope-yes">✓ Onboarding Scope</span></td>
-        </tr>
-        <tr data-tip="FundSERV Inc — unable to access CSM workspace content sharing. Product defect in Education Cloud component. Not guide-engaged.">
+        <tr data-tip="FundSERV: License and permissions setup &mdash; no guide engagement. Standard onboarding task; guidance gap from lack of engagement.">
           <td><strong>FundSERV Inc</strong></td>
-          <td><a href="https://orgcs.lightning.force.com/lightning/r/Case/500hi000004GdA3AAI/view" style="color:#0176D3;text-decoration:none;font-size:11px">474752436</a></td>
-          <td><span class="theme-pill tp-access">Access / Permissions</span></td>
-          <td style="max-width:220px;font-size:11px">User unable to access CSM workspace content sharing</td>
-          <td style="font-size:11px;color:#747474">Industry · Education Cloud</td>
+          <td style="font-size:11px;color:#0176D3;font-weight:600">474752436</td>
+          <td><span class="theme-pill tp-prov">Provisioning &amp; Access</span></td>
+          <td style="font-size:11px;color:#747474">Education Cloud &middot; License / Permissions</td>
           <td><span class="guide-dot" style="background:#AAAAAA"></span>No</td>
-          <td><span class="scope-no">✗ Product Defect</span></td>
+          <td><span class="scope-yes">&#x2713; Onboarding Scope</span></td>
+        </tr>
+        <tr data-tip="LH Bank: FSC license and permissions setup &mdash; no guide engagement. Standard configuration guidance that onboarding should cover proactively.">
+          <td><strong>LH Bank (Org 2)</strong></td>
+          <td style="font-size:11px;color:#0176D3;font-weight:600">474664135</td>
+          <td><span class="theme-pill tp-prov">Provisioning &amp; Access</span></td>
+          <td style="font-size:11px;color:#747474">Financial Services Cloud &middot; License / Permissions</td>
+          <td><span class="guide-dot" style="background:#AAAAAA"></span>No</td>
+          <td><span class="scope-yes">&#x2713; Onboarding Scope</span></td>
+        </tr>
+        <tr data-tip="Oakwood Capital: Account provisioning guidance &mdash; no guide engagement. Provisioning is a standard onboarding milestone.">
+          <td><strong>Oakwood Capital Consulting AG</strong></td>
+          <td style="font-size:11px;color:#0176D3;font-weight:600">475233668</td>
+          <td><span class="theme-pill tp-prov">Provisioning &amp; Access</span></td>
+          <td style="font-size:11px;color:#747474">Financial Services Cloud &middot; Account Provisioning</td>
+          <td><span class="guide-dot" style="background:#AAAAAA"></span>No</td>
+          <td><span class="scope-yes">&#x2713; Onboarding Scope</span></td>
+        </tr>
+        <tr data-tip="The Mahoney Group: Account management question &mdash; no guide engagement. Account management setup should be addressed during onboarding.">
+          <td><strong>The Mahoney Group</strong></td>
+          <td style="font-size:11px;color:#0176D3;font-weight:600">474583454</td>
+          <td><span class="theme-pill tp-prov">Provisioning &amp; Access</span></td>
+          <td style="font-size:11px;color:#747474">Life Sciences Cloud &middot; Account Management</td>
+          <td><span class="guide-dot" style="background:#AAAAAA"></span>No</td>
+          <td><span class="scope-yes">&#x2713; Onboarding Scope</span></td>
+        </tr>
+        <tr data-tip="Tony Walker Financial: Account provisioning &mdash; no guide engagement. Standard provisioning guidance that should be covered in the onboarding engagement.">
+          <td><strong>Tony Walker Financial</strong></td>
+          <td style="font-size:11px;color:#0176D3;font-weight:600">474625175</td>
+          <td><span class="theme-pill tp-prov">Provisioning &amp; Access</span></td>
+          <td style="font-size:11px;color:#747474">Financial Services Cloud &middot; Account Provisioning</td>
+          <td><span class="guide-dot" style="background:#AAAAAA"></span>No</td>
+          <td><span class="scope-yes">&#x2713; Onboarding Scope</span></td>
+        </tr>
+        <tr data-tip="Delta Dental: Health Cloud setup and configuration &mdash; general setup question addressable with onboarding guidance. Guide-engaged account.">
+          <td><strong>Delta Dental of California</strong><div style="font-size:10px;color:#747474">SMB Broker Portal</div></td>
+          <td style="font-size:11px;color:#0176D3;font-weight:600">473826352</td>
+          <td><span class="theme-pill tp-setup">Setup &amp; Config</span></td>
+          <td style="font-size:11px;color:#747474">Health Cloud &middot; Setup / Configuration</td>
+          <td><span class="guide-dot" style="background:#0176D3"></span>Yes</td>
+          <td><span class="scope-yes">&#x2713; Onboarding Scope</span></td>
+        </tr>
+        <tr data-tip="Delta Dental: Revenue Cloud Advanced Configurator CML &mdash; complex product-level feature, true engineering defect. Guide engaged; guide cannot fix product bugs.">
+          <td><strong>Delta Dental of California</strong><div style="font-size:10px;color:#747474">SMB Broker Portal</div></td>
+          <td style="font-size:11px;color:#0176D3;font-weight:600">473703182</td>
+          <td><span class="theme-pill tp-setup">Setup &amp; Config</span></td>
+          <td style="font-size:11px;color:#747474">Revenue Cloud &middot; Advanced Configurator CML</td>
+          <td><span class="guide-dot" style="background:#0176D3"></span>Yes</td>
+          <td><span class="scope-no">&#x2717; Break-Fix</span></td>
+        </tr>
+        <tr data-tip="Delta Dental: Revenue Cloud Product Configurator &mdash; product defect requiring engineering. Guide engaged; engineering escalation needed regardless of onboarding.">
+          <td><strong>Delta Dental of California</strong><div style="font-size:10px;color:#747474">SMB Broker Portal</div></td>
+          <td style="font-size:11px;color:#0176D3;font-weight:600">473937318</td>
+          <td><span class="theme-pill tp-setup">Setup &amp; Config</span></td>
+          <td style="font-size:11px;color:#747474">Revenue Cloud &middot; Product Configurator</td>
+          <td><span class="guide-dot" style="background:#0176D3"></span>Yes</td>
+          <td><span class="scope-no">&#x2717; Break-Fix</span></td>
+        </tr>
+        <tr data-tip="Delta Dental: Revenue Cloud Price Management defect &mdash; pricing engine bug. Engineering escalation required.">
+          <td><strong>Delta Dental of California</strong><div style="font-size:10px;color:#747474">SMB Broker Portal</div></td>
+          <td style="font-size:11px;color:#0176D3;font-weight:600">473949206</td>
+          <td><span class="theme-pill tp-setup">Setup &amp; Config</span></td>
+          <td style="font-size:11px;color:#747474">Revenue Cloud &middot; Price Management</td>
+          <td><span class="guide-dot" style="background:#0176D3"></span>Yes</td>
+          <td><span class="scope-no">&#x2717; Break-Fix</span></td>
+        </tr>
+        <tr data-tip="Delta Dental: Revenue Cloud Attribute Pricing defect &mdash; pricing engine issue. Engineering required.">
+          <td><strong>Delta Dental of California</strong><div style="font-size:10px;color:#747474">SMB Broker Portal</div></td>
+          <td style="font-size:11px;color:#0176D3;font-weight:600">473949231</td>
+          <td><span class="theme-pill tp-setup">Setup &amp; Config</span></td>
+          <td style="font-size:11px;color:#747474">Revenue Cloud &middot; Attribute Pricing</td>
+          <td><span class="guide-dot" style="background:#0176D3"></span>Yes</td>
+          <td><span class="scope-no">&#x2717; Break-Fix</span></td>
+        </tr>
+        <tr data-tip="Clearview Federal CU: General FSC setup and configuration &mdash; no guide engagement. Standard how-to guidance that onboarding should proactively cover.">
+          <td><strong>Clearview Federal Credit Union</strong></td>
+          <td style="font-size:11px;color:#0176D3;font-weight:600">474140413</td>
+          <td><span class="theme-pill tp-setup">Setup &amp; Config</span></td>
+          <td style="font-size:11px;color:#747474">Financial Services Cloud &middot; Setup / Configuration</td>
+          <td><span class="guide-dot" style="background:#AAAAAA"></span>No</td>
+          <td><span class="scope-yes">&#x2713; Onboarding Scope</span></td>
+        </tr>
+        <tr data-tip="First National Bank St. Lucia: OmniScript setup question &mdash; no guide engagement. OmniScript configuration is a standard onboarding topic; guidance gap.">
+          <td><strong>First National Bank St. Lucia Ltd</strong></td>
+          <td style="font-size:11px;color:#0176D3;font-weight:600">475176768</td>
+          <td><span class="theme-pill tp-setup">Setup &amp; Config</span></td>
+          <td style="font-size:11px;color:#747474">OmniStudio &middot; OmniScript</td>
+          <td><span class="guide-dot" style="background:#AAAAAA"></span>No</td>
+          <td><span class="scope-yes">&#x2713; Onboarding Scope</span></td>
         </tr>
       </tbody>
     </table>
@@ -834,10 +889,12 @@ BARS.forEach(d=>{
 
 // ── Theme chart (Tab 3) ───────────────────────────────────────────────
 const THEMES = [
-  {label:'Access / Permissions', value:4, pct:50, color:'#0176D3',
-   tip:'4 FSC cases: non-admin visibility, object access, MFA permissions, CSM workspace — all product defects'},
-  {label:'How-to / Configuration', value:4, pct:50, color:'#9050E9',
-   tip:'4 FSC cases: referral data model, OmniStudio components, CSV import error, pricing field limit — 1 in-scope'},
+  {label:'Provisioning & Access', value:7, pct:47, color:'#9050E9',
+   tip:'7 FSC cases: license/permissions setup, account provisioning, account management — 6 onboarding scope, 1 break-fix (Delta Dental Health Cloud provisioning defect)'},
+  {label:'Setup & Configuration', value:7, pct:47, color:'#0176D3',
+   tip:'7 FSC cases: general setup, Revenue Cloud issues — 3 onboarding scope, 4 break-fix (Delta Dental Revenue Cloud defects)'},
+  {label:'Permissions & Security', value:1, pct:7, color:'#06A59A',
+   tip:'1 FSC case: GTE Financial — how-to question on Security & Activations setup. Onboarding scope.'},
 ];
 const themeEl = document.getElementById('theme-chart');
 THEMES.forEach(d=>{
@@ -875,8 +932,8 @@ THEMES.forEach(d=>{
   const svg = document.getElementById('guide-donut');
   if(!svg) return;
   const cx=80,cy=80,r=60,stroke=20;
-  const slices=[{val:7,color:'#0176D3'},{val:1,color:'#AAAAAA'}];
-  const total=8;
+  const slices=[{val:8,color:'#0176D3'},{val:7,color:'#AAAAAA'}];
+  const total=15;
   let angle=-Math.PI/2;
   slices.forEach(s=>{
     const sweep = (s.val/total)*2*Math.PI;
@@ -897,7 +954,7 @@ THEMES.forEach(d=>{
   t1.setAttribute('x',cx);t1.setAttribute('y',cy-6);
   t1.setAttribute('text-anchor','middle');t1.setAttribute('font-size','18');
   t1.setAttribute('font-weight','800');t1.setAttribute('fill','#0176D3');
-  t1.textContent='88%';svg.appendChild(t1);
+  t1.textContent='53%';svg.appendChild(t1);
   const t2=document.createElementNS('http://www.w3.org/2000/svg','text');
   t2.setAttribute('x',cx);t2.setAttribute('y',cy+12);
   t2.setAttribute('text-anchor','middle');t2.setAttribute('font-size','10');
