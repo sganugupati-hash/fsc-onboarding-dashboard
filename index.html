@@ -345,48 +345,8 @@ body{
   <button class="tab-btn active" onclick="showTab('overview',this)">Program Overview</button>
   <button class="tab-btn" onclick="showTab('guide',this)">Guide Engagement Impact</button>
   <button class="tab-btn" onclick="showTab('cases',this)">Support Case Analysis</button>
-</div>
-
-<!-- ══════════════════════════════════════════
-     TAB 1 — PROGRAM OVERVIEW
-══════════════════════════════════════════ -->
-<div class="page active" id="tab-overview">
-
-  <!-- Stat Tiles -->
-  <div class="tiles">
-    <div class="tile t-blue" data-tip="72 unique FSC accounts completed Premier Onboarding in FYTD'27.">
-      <div class="tile-num">72</div>
-      <div class="tile-lbl">Accounts Onboarded</div>
-      <div class="tile-sub">FYTD'27 · FSC</div>
-    </div>
-    <div class="tile t-green" data-tip="Average CSAT rating across FSC onboarded accounts. Scale 1–5.">
-      <div class="tile-num">4.8<span style="font-size:16px">/5</span></div>
-      <div class="tile-lbl">Overall CSAT</div>
-      <div class="tile-sub">High satisfaction</div>
-    </div>
-    <div class="tile t-purple" data-tip="8 accounts completed a Guide engagement session (Column G). Only 11% of total — a key scale opportunity.">
-      <div class="tile-num">8</div>
-      <div class="tile-lbl">Guide Engagements</div>
-      <div class="tile-sub">11% of accounts</div>
-    </div>
-    <div class="tile t-orange" data-tip="Average PSL (Provisioned Seat License) activation rate across all 72 accounts. Opportunity to improve.">
-      <div class="tile-num">39<span style="font-size:16px">%</span></div>
-      <div class="tile-lbl">PSL Activation</div>
-      <div class="tile-sub">28 of 72 accounts</div>
-    </div>
-    <div class="tile t-teal" data-tip="14 of 72 accounts have Salesforce Go features activated post-onboarding.">
-      <div class="tile-num">19<span style="font-size:16px">%</span></div>
-      <div class="tile-lbl">SF Go Access</div>
-      <div class="tile-sub">14 of 72 accounts</div>
-    </div>
-    <div class="tile t-gray" data-tip="43 of 72 accounts have at least one foundational FSC feature activated (Financial Account 360, ARC, Field Audit Trail, etc.)">
-      <div class="tile-num">60<span style="font-size:16px">%</span></div>
-      <div class="tile-lbl">Foundational Features</div>
-      <div class="tile-sub">43 of 72 accounts</div>
-    </div>
-  </div>
-
-  <!-- Onboarding Process Banner -->
+<!-- Onboarding Process Banner (always visible) -->
+<div style="padding:20px 36px 0">
   <div style="background:linear-gradient(135deg,#F8FAFF 0%,#EEF4FF 100%);border:1px solid #C9D8F5;border-radius:10px;padding:16px 20px 18px;margin-bottom:24px">
     <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0176D3;margin-bottom:14px">How We Onboard &mdash; FSC Premier / Signature Process</div>
     <div style="display:flex;align-items:flex-start;gap:0;overflow-x:auto">
@@ -476,6 +436,48 @@ body{
         </div>
       </div>
 
+    </div>
+  </div>
+</div>
+
+</div>
+
+<!-- ══════════════════════════════════════════
+     TAB 1 — PROGRAM OVERVIEW
+══════════════════════════════════════════ -->
+<div class="page active" id="tab-overview">
+
+  <!-- Stat Tiles -->
+  <div class="tiles">
+    <div class="tile t-blue" data-tip="72 unique FSC accounts completed Premier Onboarding in FYTD'27.">
+      <div class="tile-num">72</div>
+      <div class="tile-lbl">Accounts Onboarded</div>
+      <div class="tile-sub">FYTD'27 · FSC</div>
+    </div>
+    <div class="tile t-green" data-tip="Average CSAT rating across FSC onboarded accounts. Scale 1–5.">
+      <div class="tile-num">4.8<span style="font-size:16px">/5</span></div>
+      <div class="tile-lbl">Overall CSAT</div>
+      <div class="tile-sub">High satisfaction</div>
+    </div>
+    <div class="tile t-purple" data-tip="8 accounts completed a Guide engagement session (Column G). Only 11% of total — a key scale opportunity.">
+      <div class="tile-num">8</div>
+      <div class="tile-lbl">Guide Engagements</div>
+      <div class="tile-sub">11% of accounts</div>
+    </div>
+    <div class="tile t-orange" data-tip="Average PSL (Provisioned Seat License) activation rate across all 72 accounts. Opportunity to improve.">
+      <div class="tile-num">39<span style="font-size:16px">%</span></div>
+      <div class="tile-lbl">PSL Activation</div>
+      <div class="tile-sub">28 of 72 accounts</div>
+    </div>
+    <div class="tile t-teal" data-tip="14 of 72 accounts have Salesforce Go features activated post-onboarding.">
+      <div class="tile-num">19<span style="font-size:16px">%</span></div>
+      <div class="tile-lbl">SF Go Access</div>
+      <div class="tile-sub">14 of 72 accounts</div>
+    </div>
+    <div class="tile t-gray" data-tip="43 of 72 accounts have at least one foundational FSC feature activated (Financial Account 360, ARC, Field Audit Trail, etc.)">
+      <div class="tile-num">60<span style="font-size:16px">%</span></div>
+      <div class="tile-lbl">Foundational Features</div>
+      <div class="tile-sub">43 of 72 accounts</div>
     </div>
   </div>
 
