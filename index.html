@@ -649,17 +649,44 @@ body{
 ══════════════════════════════════════════ -->
 <div class="page" id="tab-cases">
 
-  <!-- KPI Tiles -->
-  <div class="tiles" style="grid-template-columns:repeat(5,1fr)">
-    <div class="tile t-blue" data-tip="15 FSC support cases from the Cases Theme Analysis spreadsheet — Analysis sheet, filtered for Financial Services Cloud.">
-      <div class="tile-num">15</div>
-      <div class="tile-lbl">FSC Cases Analyzed</div>
-      <div class="tile-sub">Post-onboarding support</div>
+  <!-- Macro Volume Banner -->
+  <div style="background:#EEF4FF;border-radius:10px;padding:16px 20px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
+    <div>
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0176D3;margin-bottom:3px">FSC Case Volume · Feb–Oct 2026 (Monthly Sheets)</div>
+      <div style="font-size:13px;color:#444">Total FSC cases raised across all 9 monthly sheets &mdash; pre-filtered to Industry-Financial Services product cases</div>
     </div>
-    <div class="tile t-gray" data-tip="9 unique FSC accounts raised at least one support case post-onboarding out of 72 total onboarded accounts.">
+    <div style="display:flex;gap:28px;flex-wrap:wrap">
+      <div style="text-align:center">
+        <div style="font-size:28px;font-weight:800;color:#032D60;line-height:1">205</div>
+        <div style="font-size:11px;color:#444;margin-top:2px">Unique Cases</div>
+      </div>
+      <div style="text-align:center">
+        <div style="font-size:28px;font-weight:800;color:#0176D3;line-height:1">74</div>
+        <div style="font-size:11px;color:#444;margin-top:2px">Accounts</div>
+      </div>
+      <div style="text-align:center">
+        <div style="font-size:28px;font-weight:800;color:#2E844A;line-height:1">106</div>
+        <div style="font-size:11px;color:#444;margin-top:2px">Support Cases</div>
+      </div>
+      <div style="text-align:center">
+        <div style="font-size:28px;font-weight:800;color:#9050E9;line-height:1">93</div>
+        <div style="font-size:11px;color:#444;margin-top:2px">Accelerator Requests</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KPI Tiles — Analysis Subset -->
+  <div class="sec-lbl" style="margin-bottom:10px">Deep-dive: cases with onboarding context (Analysis sheet)</div>
+  <div class="tiles" style="grid-template-columns:repeat(5,1fr)">
+    <div class="tile t-blue" data-tip="15 of 205 FSC cases appear in the Analysis sheet — these are cases where an Onboarding case was also open, giving full context on whether the issue could have been prevented.">
+      <div class="tile-num">15</div>
+      <div class="tile-lbl">Cases with OB Context</div>
+      <div class="tile-sub">from 205 total FSC cases</div>
+    </div>
+    <div class="tile t-gray" data-tip="9 unique FSC accounts from the Analysis sheet subset. Broader monthly data shows 74 accounts raised FSC cases overall.">
       <div class="tile-num">9</div>
-      <div class="tile-lbl">Accounts Affected</div>
-      <div class="tile-sub">of 72 onboarded</div>
+      <div class="tile-lbl">Accounts in Analysis</div>
+      <div class="tile-sub">74 total across monthly</div>
     </div>
     <div class="tile t-green" data-tip="10 of 15 FSC cases (67%) are provisioning, license setup, or how-to questions that could have been proactively addressed during onboarding — primarily from accounts with no guide engagement.">
       <div class="tile-num">10</div>
@@ -673,13 +700,45 @@ body{
     </div>
     <div class="tile t-purple" data-tip="8 of 15 FSC cases came from guide-engaged accounts (Delta Dental + GTE Financial). Their break-fix cases are product defects — guide engagement does not prevent product bugs but reduces guidance gaps.">
       <div class="tile-num">8</div>
-      <div class="tile-lbl">Guide-Engaged Cases</div>
-      <div class="tile-sub">53% of all cases</div>
+      <div class="tile-lbl">Guide + OB Engaged</div>
+      <div class="tile-sub">7 OB only (no guide)</div>
+    </div>
+  </div>
+
+  <!-- Config / Access / Permissions spotlight -->
+  <div style="background:#FEF3E2;border:1px solid #DD7A01;border-radius:10px;padding:18px 20px;margin-top:4px;margin-bottom:0">
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#744400;margin-bottom:10px">Config · Access · Permissions — Theme Spotlight</div>
+    <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start">
+      <div style="flex:1;min-width:220px">
+        <div style="font-size:13px;color:#444;line-height:1.6">From the Analysis sheet, <strong>13 accounts</strong> and <strong>19 cases</strong> relate to configuration, access, and permissions themes &mdash; the dominant FSC support pattern. This includes accounts tagged Financial Services Cloud as well as FSC-type institutions (banks, financial firms) tracked under Industry Clouds.</div>
+      </div>
+      <div style="display:flex;gap:20px;flex-wrap:wrap">
+        <div style="background:#fff;border-radius:8px;padding:12px 18px;text-align:center;min-width:100px">
+          <div style="font-size:24px;font-weight:800;color:#2E844A">10</div>
+          <div style="font-size:11px;color:#444;margin-top:2px">Onboarding Scope</div>
+          <div style="font-size:10px;color:#888">67% — preventable</div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:12px 18px;text-align:center;min-width:100px">
+          <div style="font-size:24px;font-weight:800;color:#BA0517">5</div>
+          <div style="font-size:11px;color:#444;margin-top:2px">Break-Fix / Defect</div>
+          <div style="font-size:10px;color:#888">33% — engineering</div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:12px 18px;text-align:center;min-width:100px">
+          <div style="font-size:24px;font-weight:800;color:#0176D3">8</div>
+          <div style="font-size:11px;color:#444;margin-top:2px">Guide + OB Engaged</div>
+          <div style="font-size:10px;color:#888">both teams involved</div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:12px 18px;text-align:center;min-width:100px">
+          <div style="font-size:24px;font-weight:800;color:#747474">7</div>
+          <div style="font-size:11px;color:#444;margin-top:2px">OB Only (No Guide)</div>
+          <div style="font-size:10px;color:#888">pure guidance gaps</div>
+        </div>
+      </div>
     </div>
   </div>
 
   <!-- Scope breakdown hero -->
-  <div class="sec-lbl">Onboarding team scope determination</div>
+  <div class="sec-lbl" style="margin-top:20px">Onboarding scope determination — 15 analysis cases</div>
   <div class="scope-hero">
     <div class="scope-block scope-in">
       <div style="font-size:13px;font-weight:700;color:#2E844A;margin-bottom:6px">&#x2713; Within Onboarding Scope</div>
@@ -700,7 +759,7 @@ body{
     <!-- Theme breakdown -->
     <div class="card">
       <div class="card-title">Case Theme Breakdown</div>
-      <div class="card-sub">15 FSC cases by primary support theme</div>
+      <div class="card-sub">15 FSC cases (Analysis sheet) by primary support theme</div>
       <div id="theme-chart" class="hbar-list" style="margin-top:8px"></div>
       <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border)">
         <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--gray-50);margin-bottom:10px">Scope by Theme</div>
@@ -755,7 +814,7 @@ body{
   <div class="card" style="padding:0;overflow:hidden">
     <div style="padding:18px 20px 12px">
       <div class="card-title">FSC Case Detail</div>
-      <div class="card-sub">All 15 FSC cases from the Analysis sheet &mdash; sorted by theme</div>
+      <div class="card-sub">15 FSC cases from Analysis sheet (205 total across monthly sheets) &mdash; sorted by theme</div>
     </div>
     <div style="overflow-x:auto">
     <table class="case-table">
