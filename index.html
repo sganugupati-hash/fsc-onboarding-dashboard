@@ -234,20 +234,24 @@ body{
 .gbar-legend-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--gray-70)}
 .gbar-swatch{width:12px;height:12px;border-radius:2px}
 .gbar-body{
-  display:flex;align-items:flex-end;gap:32px;
-  height:200px;padding-bottom:32px;padding-top:8px;
+  display:flex;gap:24px;
+  padding-top:28px;
   position:relative;
-  border-bottom:2px solid var(--gray-20);
 }
 .gbar-body::before{
-  content:'';position:absolute;left:0;right:0;top:0;bottom:32px;
+  content:'';position:absolute;
+  left:0;right:0;top:28px;height:168px;
   background:repeating-linear-gradient(to bottom,
     transparent 0,transparent calc(25% - 1px),
     #EEEEEE calc(25% - 1px),#EEEEEE 25%);
   pointer-events:none;
 }
-.gbar-cluster{flex:1;display:flex;flex-direction:column;align-items:center;height:100%;position:relative}
-.gbar-bars{display:flex;align-items:flex-end;gap:5px;width:100%;justify-content:center;flex:1}
+.gbar-cluster{flex:1;display:flex;flex-direction:column;align-items:center;position:relative}
+.gbar-bars{
+  display:flex;align-items:flex-end;gap:5px;width:100%;
+  justify-content:center;height:168px;
+  border-bottom:2px solid var(--gray-20);
+}
 .gbar-bar{
   flex:1;max-width:52px;border-radius:4px 4px 0 0;
   position:relative;cursor:pointer;transition:filter .15s;min-height:3px;
@@ -262,8 +266,8 @@ body{
 .gb-guide .gbar-bar-lbl{color:#0176D3}
 .gb-noguide .gbar-bar-lbl{color:#747474}
 .gbar-axis-lbl{
-  position:absolute;bottom:-28px;left:50%;transform:translateX(-50%);
-  font-size:11px;font-weight:600;color:var(--gray-50);white-space:nowrap;text-align:center;
+  margin-top:8px;font-size:10px;font-weight:600;
+  color:var(--gray-50);text-align:center;line-height:1.4;width:100%;
 }
 .delta-badge{
   display:inline-flex;align-items:center;gap:3px;
@@ -1067,27 +1071,51 @@ const BARS = [
    tipN:'12/64 non-guide accounts (19%) have SF Go features active'},
 ];
 const gbar = document.getElementById('gbar');
-const H = 168; // chart height - axis label space
+const H = 168;
 BARS.forEach(d=>{
   const gh = Math.round(d.guide/100*H);
   const nh = Math.round(d.noguide/100*H);
+
   const cluster = document.createElement('div');
-  cluster.className='gbar-cluster';
-  cluster.innerHTML=`
-    <div class="gbar-bars">
-      <div class="gbar-bar gb-guide" style="height:${gh}px"
-           onmouseenter="showTip(event,'${d.tipG}')" onmouseleave="hideTip()">
-        <span class="gbar-bar-lbl">${d.guide}%</span>
-      </div>
-      <div class="gbar-bar gb-noguide" style="height:${nh}px"
-           onmouseenter="showTip(event,'${d.tipN}')" onmouseleave="hideTip()">
-        <span class="gbar-bar-lbl">${d.noguide}%</span>
-      </div>
-    </div>
-    <div style="position:absolute;bottom:-28px;left:50%;transform:translateX(-50%);text-align:center;">
-      <div style="font-size:10px;font-weight:600;color:#747474;white-space:nowrap;">${d.label.replace('\n','<br>')}</div>
-      <span class="delta-badge ${d.deltaCls}" style="margin-top:3px;display:inline-flex;">${d.delta}</span>
-    </div>`;
+  cluster.className = 'gbar-cluster';
+
+  // — bars row —
+  const barsDiv = document.createElement('div');
+  barsDiv.className = 'gbar-bars';
+
+  const makeBar = (cls, h, pct, tipText) => {
+    const bar = document.createElement('div');
+    bar.className = 'gbar-bar ' + cls;
+    bar.style.height = h + 'px';
+    bar.addEventListener('mouseenter', e=>showTip(e, tipText));
+    bar.addEventListener('mousemove', moveTip);
+    bar.addEventListener('mouseleave', hideTip);
+    const lbl = document.createElement('span');
+    lbl.className = 'gbar-bar-lbl';
+    lbl.textContent = pct + '%';
+    bar.appendChild(lbl);
+    return bar;
+  };
+  barsDiv.appendChild(makeBar('gb-guide',   gh, d.guide,   d.tipG));
+  barsDiv.appendChild(makeBar('gb-noguide', nh, d.noguide, d.tipN));
+  cluster.appendChild(barsDiv);
+
+  // — axis label (normal flow, no absolute positioning) —
+  const axisDiv = document.createElement('div');
+  axisDiv.className = 'gbar-axis-lbl';
+  d.label.split('\n').forEach((part, i) => {
+    if (i > 0) axisDiv.appendChild(document.createElement('br'));
+    axisDiv.appendChild(document.createTextNode(part));
+  });
+  cluster.appendChild(axisDiv);
+
+  // — delta badge —
+  const badge = document.createElement('span');
+  badge.className = 'delta-badge ' + d.deltaCls;
+  badge.style.cssText = 'display:inline-flex;margin-top:4px;';
+  badge.textContent = d.delta;
+  cluster.appendChild(badge);
+
   gbar.appendChild(cluster);
 });
 
