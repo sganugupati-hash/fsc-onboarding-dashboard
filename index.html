@@ -329,6 +329,7 @@ body{
 }
 .scope-in{background:linear-gradient(135deg,#EEF5EE,#F8FFF8);border-color:#2E844A}
 .scope-out{background:linear-gradient(135deg,#FFF5F5,#FFF8F0);border-color:#BA0517}
+.scope-warn{background:linear-gradient(135deg,#FEF3E2,#FFFAF0);border-color:#DD7A01}
 .scope-num{font-size:52px;font-weight:900;line-height:1;margin:8px 0 4px}
 .scope-in .scope-num{color:#2E844A}
 .scope-out .scope-num{color:#BA0517}
@@ -671,162 +672,173 @@ body{
 ══════════════════════════════════════════ -->
 <div class="page" id="tab-cases">
 
-  <!-- Macro Volume Banner -->
-  <div style="background:#EEF4FF;border-radius:10px;padding:16px 20px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
-    <div>
-      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0176D3;margin-bottom:3px">FSC Case Volume · Feb–Oct 2026 (Monthly Sheets)</div>
-      <div style="font-size:13px;color:#444">Total FSC cases raised across all 9 monthly sheets &mdash; pre-filtered to Industry-Financial Services product cases</div>
-    </div>
-    <div style="display:flex;gap:28px;flex-wrap:wrap">
-      <div style="text-align:center">
-        <div style="font-size:28px;font-weight:800;color:#032D60;line-height:1">205</div>
-        <div style="font-size:11px;color:#444;margin-top:2px">Unique Cases</div>
+  <!-- Volume Banner with monthly trend -->
+  <div style="background:#EEF4FF;border-radius:10px;padding:18px 20px;margin-bottom:20px">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:20px">
+      <div>
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0176D3;margin-bottom:3px">FSC Support Cases Only &middot; Feb&ndash;Oct 2026</div>
+        <div style="font-size:13px;color:#555;margin-bottom:14px">Excludes Accelerator Delivery Requests &mdash; filtered to Industry-Financial Services product</div>
+        <div style="display:flex;gap:36px">
+          <div>
+            <div style="font-size:36px;font-weight:900;color:#032D60;line-height:1">119</div>
+            <div style="font-size:11px;color:#444;margin-top:3px">Unique Support Cases</div>
+          </div>
+          <div style="width:1px;background:#C5D5E8;align-self:stretch"></div>
+          <div>
+            <div style="font-size:36px;font-weight:900;color:#0176D3;line-height:1">55</div>
+            <div style="font-size:11px;color:#444;margin-top:3px">Unique Accounts</div>
+          </div>
+        </div>
       </div>
-      <div style="text-align:center">
-        <div style="font-size:28px;font-weight:800;color:#0176D3;line-height:1">74</div>
-        <div style="font-size:11px;color:#444;margin-top:2px">Accounts</div>
-      </div>
-      <div style="text-align:center">
-        <div style="font-size:28px;font-weight:800;color:#2E844A;line-height:1">106</div>
-        <div style="font-size:11px;color:#444;margin-top:2px">Support Cases</div>
-      </div>
-      <div style="text-align:center">
-        <div style="font-size:28px;font-weight:800;color:#9050E9;line-height:1">93</div>
-        <div style="font-size:11px;color:#444;margin-top:2px">Accelerator Requests</div>
+      <!-- Monthly mini bar chart -->
+      <div>
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#6E8FAB;margin-bottom:8px">Case Volume by Month</div>
+        <div style="display:flex;align-items:flex-end;gap:5px;height:60px">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:3px">
+            <div style="width:28px;height:19px;background:#0176D3;border-radius:3px 3px 0 0"></div>
+            <div style="font-size:9px;color:#6E8FAB;font-weight:600">Feb</div>
+            <div style="font-size:9px;color:#032D60;font-weight:700">22</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:3px">
+            <div style="width:28px;height:56px;background:#032D60;border-radius:3px 3px 0 0;position:relative">
+              <div style="position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-size:9px;color:#032D60;font-weight:800;white-space:nowrap">&#x25B2; spike</div>
+            </div>
+            <div style="font-size:9px;color:#6E8FAB;font-weight:600">Mar</div>
+            <div style="font-size:9px;color:#032D60;font-weight:700">64</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:3px">
+            <div style="width:28px;height:6px;background:#0176D3;border-radius:3px 3px 0 0"></div>
+            <div style="font-size:9px;color:#6E8FAB;font-weight:600">Apr</div>
+            <div style="font-size:9px;color:#032D60;font-weight:700">7</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:3px">
+            <div style="width:28px;height:8px;background:#0176D3;border-radius:3px 3px 0 0"></div>
+            <div style="font-size:9px;color:#6E8FAB;font-weight:600">May</div>
+            <div style="font-size:9px;color:#032D60;font-weight:700">9</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:3px">
+            <div style="width:28px;height:4px;background:#0176D3;border-radius:3px 3px 0 0"></div>
+            <div style="font-size:9px;color:#6E8FAB;font-weight:600">Jun</div>
+            <div style="font-size:9px;color:#032D60;font-weight:700">4</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:3px">
+            <div style="width:28px;height:4px;background:#0176D3;border-radius:3px 3px 0 0"></div>
+            <div style="font-size:9px;color:#6E8FAB;font-weight:600">Jul</div>
+            <div style="font-size:9px;color:#032D60;font-weight:700">5</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:3px">
+            <div style="width:28px;height:6px;background:#0176D3;border-radius:3px 3px 0 0"></div>
+            <div style="font-size:9px;color:#6E8FAB;font-weight:600">Aug</div>
+            <div style="font-size:9px;color:#032D60;font-weight:700">7</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:3px">
+            <div style="width:28px;height:2px;background:#B8CEDE;border-radius:3px 3px 0 0"></div>
+            <div style="font-size:9px;color:#6E8FAB;font-weight:600">Sep</div>
+            <div style="font-size:9px;color:#032D60;font-weight:700">0</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:3px">
+            <div style="width:28px;height:2px;background:#B8CEDE;border-radius:3px 3px 0 0"></div>
+            <div style="font-size:9px;color:#6E8FAB;font-weight:600">Oct</div>
+            <div style="font-size:9px;color:#032D60;font-weight:700">1</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- KPI Tiles — Analysis Subset -->
-  <div class="sec-lbl" style="margin-bottom:10px">Deep-dive: cases with onboarding context (Analysis sheet)</div>
+  <div class="sec-lbl" style="margin-bottom:10px">Analysis sheet deep-dive &mdash; 19 of 119 support cases with full onboarding context</div>
   <div class="tiles" style="grid-template-columns:repeat(5,1fr)">
-    <div class="tile t-blue" data-tip="15 of 205 FSC cases appear in the Analysis sheet — these are cases where an Onboarding case was also open, giving full context on whether the issue could have been prevented.">
-      <div class="tile-num">15</div>
-      <div class="tile-lbl">Cases with OB Context</div>
-      <div class="tile-sub">from 205 total FSC cases</div>
+    <div class="tile t-blue" data-tip="19 of 119 FSC support cases appear in the Analysis sheet — these have a linked Onboarding case, providing full context on engagement depth and whether support was linked to an onboarding gap.">
+      <div class="tile-num">19</div>
+      <div class="tile-lbl">Cases Analyzed</div>
+      <div class="tile-sub">from 119 support cases</div>
     </div>
-    <div class="tile t-gray" data-tip="9 unique FSC accounts from the Analysis sheet subset. Broader monthly data shows 74 accounts raised FSC cases overall.">
-      <div class="tile-num">9</div>
+    <div class="tile t-gray" data-tip="13 unique accounts across the 19 analyzed support cases. 55 total accounts raised FSC support cases across all monthly sheets.">
+      <div class="tile-num">13</div>
       <div class="tile-lbl">Accounts in Analysis</div>
-      <div class="tile-sub">74 total across monthly</div>
+      <div class="tile-sub">55 total with support cases</div>
     </div>
-    <div class="tile t-green" data-tip="10 of 15 FSC cases (67%) are provisioning, license setup, or how-to questions that could have been proactively addressed during onboarding — primarily from accounts with no guide engagement.">
-      <div class="tile-num">10</div>
+    <div class="tile t-green" data-tip="All 19 analyzed cases are linked to an active onboarding case — meaning 100% of the reviewed support cases occurred while the account was in active onboarding. Every case is onboarding scope.">
+      <div class="tile-num">19</div>
       <div class="tile-lbl">Onboarding Scope</div>
-      <div class="tile-sub">67% — guidance gap</div>
+      <div class="tile-sub">100% &mdash; all cases OB-linked</div>
     </div>
-    <div class="tile t-orange" data-tip="5 of 15 FSC cases (33%) are true product defects — concentrated in Delta Dental's Revenue Cloud Configurator and Price Management components. Engineering escalation required.">
-      <div class="tile-num">5</div>
-      <div class="tile-lbl">Break-Fix / Defect</div>
-      <div class="tile-sub">33% — engineering needed</div>
-    </div>
-    <div class="tile t-purple" data-tip="8 of 15 FSC cases came from guide-engaged accounts (Delta Dental + GTE Financial). Their break-fix cases are product defects — guide engagement does not prevent product bugs but reduces guidance gaps.">
-      <div class="tile-num">8</div>
+    <div class="tile t-purple" data-tip="10 cases from 4 accounts (NHBC, Abu Dhabi, Holding RappiPay, Delta Dental) had both an onboarding case AND a completed guide session — the highest engagement tier.">
+      <div class="tile-num">10</div>
       <div class="tile-lbl">Guide + OB Engaged</div>
-      <div class="tile-sub">7 OB only (no guide)</div>
+      <div class="tile-sub">4 accounts &middot; 53% of analyzed</div>
+    </div>
+    <div class="tile t-orange" data-tip="9 cases from 9 different accounts had onboarding-linked support cases but no guide session recorded. Each is a distinct account — representing 9 guidance coverage gaps.">
+      <div class="tile-num">9</div>
+      <div class="tile-lbl">OB Only &mdash; No Guide</div>
+      <div class="tile-sub">9 accounts &middot; guidance gap</div>
     </div>
   </div>
 
-  <!-- Config / Access / Permissions spotlight -->
-  <div style="background:#FEF3E2;border:1px solid #DD7A01;border-radius:10px;padding:18px 20px;margin-top:4px;margin-bottom:0">
-    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#744400;margin-bottom:10px">Config · Access · Permissions — Theme Spotlight</div>
-    <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start">
-      <div style="flex:1;min-width:220px">
-        <div style="font-size:13px;color:#444;line-height:1.6">From the Analysis sheet, <strong>13 accounts</strong> and <strong>19 cases</strong> relate to configuration, access, and permissions themes &mdash; the dominant FSC support pattern. This includes accounts tagged Financial Services Cloud as well as FSC-type institutions (banks, financial firms) tracked under Industry Clouds.</div>
-      </div>
-      <div style="display:flex;gap:20px;flex-wrap:wrap">
-        <div style="background:#fff;border-radius:8px;padding:12px 18px;text-align:center;min-width:100px">
-          <div style="font-size:24px;font-weight:800;color:#2E844A">10</div>
-          <div style="font-size:11px;color:#444;margin-top:2px">Onboarding Scope</div>
-          <div style="font-size:10px;color:#888">67% — preventable</div>
-        </div>
-        <div style="background:#fff;border-radius:8px;padding:12px 18px;text-align:center;min-width:100px">
-          <div style="font-size:24px;font-weight:800;color:#BA0517">5</div>
-          <div style="font-size:11px;color:#444;margin-top:2px">Break-Fix / Defect</div>
-          <div style="font-size:10px;color:#888">33% — engineering</div>
-        </div>
-        <div style="background:#fff;border-radius:8px;padding:12px 18px;text-align:center;min-width:100px">
-          <div style="font-size:24px;font-weight:800;color:#0176D3">8</div>
-          <div style="font-size:11px;color:#444;margin-top:2px">Guide + OB Engaged</div>
-          <div style="font-size:10px;color:#888">both teams involved</div>
-        </div>
-        <div style="background:#fff;border-radius:8px;padding:12px 18px;text-align:center;min-width:100px">
-          <div style="font-size:24px;font-weight:800;color:#747474">7</div>
-          <div style="font-size:11px;color:#444;margin-top:2px">OB Only (No Guide)</div>
-          <div style="font-size:10px;color:#888">pure guidance gaps</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Scope breakdown hero -->
-  <div class="sec-lbl" style="margin-top:20px">Onboarding scope determination — 15 analysis cases</div>
+  <!-- Engagement depth scope hero -->
+  <div class="sec-lbl" style="margin-top:20px">Engagement depth across 13 analyzed accounts</div>
   <div class="scope-hero">
     <div class="scope-block scope-in">
-      <div style="font-size:13px;font-weight:700;color:#2E844A;margin-bottom:6px">&#x2713; Within Onboarding Scope</div>
+      <div style="font-size:13px;font-weight:700;color:#2E844A;margin-bottom:6px">&#x2713; Guide + Onboarding Engaged</div>
       <div class="scope-num">10</div>
-      <div class="scope-label">67% &mdash; Guidance &amp; Configuration Gap</div>
-      <div class="scope-desc">Provisioning setup, license configuration, account management, and how-to questions &mdash; mostly from accounts with no guide engagement. Better onboarding coverage could prevent these cases.</div>
+      <div class="scope-label">4 accounts &mdash; 53% of analyzed cases</div>
+      <div class="scope-desc">NHBC (7 cases), Abu Dhabi Commercial Bank, Holding RappiPay, Delta Dental &mdash; all received full onboarding engagement including guide sessions. Support cases from these accounts reflect ongoing complexity, not a guidance gap.</div>
     </div>
-    <div class="scope-block scope-out">
-      <div style="font-size:13px;font-weight:700;color:#BA0517;margin-bottom:6px">&#x26A0; Break-Fix / Product Defect</div>
-      <div class="scope-num">5</div>
-      <div class="scope-label">33% &mdash; Engineering Required</div>
-      <div class="scope-desc">Delta Dental's Revenue Cloud Configurator and Price Management issues &mdash; true product defects. Guide engagement was already in place; these require engineering escalation regardless of onboarding quality.</div>
+    <div class="scope-block scope-warn">
+      <div style="font-size:13px;font-weight:700;color:#744400;margin-bottom:6px">&#x26A0; OB Scope &mdash; No Guide Session</div>
+      <div class="scope-num" style="color:#DD7A01">9</div>
+      <div class="scope-label" style="color:#744400">9 accounts &mdash; 47% of analyzed cases</div>
+      <div class="scope-desc">Carclew, Clearview FCU, Sibley Memorial, Smithsonian, Marks Group, Tony Walker, LH Bank, Heisman, Oakwood Capital &mdash; onboarding-linked but no guide session on record. Each represents a guide coverage opportunity.</div>
     </div>
   </div>
 
-  <!-- Charts row: Theme + Guide impact -->
+  <!-- Charts row: Theme + Guide -->
   <div class="row2">
     <!-- Theme breakdown -->
     <div class="card">
       <div class="card-title">Case Theme Breakdown</div>
-      <div class="card-sub">15 FSC cases (Analysis sheet) by primary support theme</div>
+      <div class="card-sub">19 analyzed support cases by primary theme</div>
       <div id="theme-chart" class="hbar-list" style="margin-top:8px"></div>
       <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border)">
-        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--gray-50);margin-bottom:10px">Scope by Theme</div>
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--gray-50);margin-bottom:10px">Guide Coverage by Theme</div>
         <div style="display:flex;flex-direction:column;gap:8px;font-size:12px">
           <div style="display:flex;justify-content:space-between;align-items:center">
-            <span style="color:#9050E9;font-weight:600">Provisioning &amp; Access (7)</span>
+            <span style="color:#0176D3;font-weight:600">Setup &amp; Configuration (10)</span>
             <span style="display:flex;gap:6px">
-              <span class="scope-yes">6 in scope</span>
-              <span class="scope-no">1 defect</span>
+              <span class="scope-yes">7 guide+OB</span>
+              <span style="background:#FEF3E2;color:#744400;border-radius:4px;padding:1px 7px;font-size:11px;font-weight:600">3 OB only</span>
             </span>
           </div>
           <div style="display:flex;justify-content:space-between;align-items:center">
-            <span style="color:#0176D3;font-weight:600">Setup &amp; Configuration (7)</span>
+            <span style="color:#9050E9;font-weight:600">Provisioning &amp; Licenses (9)</span>
             <span style="display:flex;gap:6px">
-              <span class="scope-yes">3 in scope</span>
-              <span class="scope-no">4 defects</span>
+              <span class="scope-yes">3 guide+OB</span>
+              <span style="background:#FEF3E2;color:#744400;border-radius:4px;padding:1px 7px;font-size:11px;font-weight:600">6 OB only</span>
             </span>
-          </div>
-          <div style="display:flex;justify-content:space-between;align-items:center">
-            <span style="color:#06A59A;font-weight:600">Permissions &amp; Security (1)</span>
-            <span class="scope-yes">1 in scope</span>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Guide engagement -->
+    <!-- Guide engagement donut -->
     <div class="card">
       <div class="card-title">Guide Engagement Among Case Raisers</div>
-      <div class="card-sub">Cases raised by guide-engaged vs non-guide FSC accounts</div>
+      <div class="card-sub">19 analyzed support cases &mdash; guide+OB vs OB only (no guide)</div>
       <div style="display:flex;flex-direction:column;align-items:center;gap:16px;padding:12px 0">
         <svg width="160" height="160" viewBox="0 0 160 160" id="guide-donut"></svg>
         <div style="display:flex;gap:24px;font-size:12px">
           <div style="display:flex;align-items:center;gap:6px">
-            <div style="width:12px;height:12px;border-radius:50%;background:#0176D3;flex-shrink:0"></div>
-            <span>Guide-engaged: <strong>8</strong></span>
+            <div style="width:12px;height:12px;border-radius:50%;background:#2E844A;flex-shrink:0"></div>
+            <span>Guide + OB: <strong>10</strong></span>
           </div>
           <div style="display:flex;align-items:center;gap:6px">
-            <div style="width:12px;height:12px;border-radius:50%;background:#AAAAAA;flex-shrink:0"></div>
-            <span>No guide: <strong>7</strong></span>
+            <div style="width:12px;height:12px;border-radius:50%;background:#DD7A01;flex-shrink:0"></div>
+            <span>OB only: <strong>9</strong></span>
           </div>
         </div>
-        <div style="background:#FEF3E2;border-radius:8px;padding:12px 16px;font-size:12px;line-height:1.6;color:#744400;max-width:340px;text-align:center">
-          <strong>Pattern:</strong> Non-guide accounts (7 cases) are almost entirely guidance gaps fixable during onboarding.
-          Guide-engaged cases include Delta Dental's product defects &mdash; guide cannot prevent engineering issues.
+        <div style="background:#EEF4FF;border-radius:8px;padding:12px 16px;font-size:12px;line-height:1.6;color:#032D60;max-width:340px;text-align:center">
+          <strong>Key insight:</strong> All 19 cases are onboarding-linked. The split is purely about guide coverage &mdash; 9 accounts never received a guide session despite having active onboarding cases.
         </div>
       </div>
     </div>
@@ -835,8 +847,8 @@ body{
   <!-- Case Detail Table -->
   <div class="card" style="padding:0;overflow:hidden">
     <div style="padding:18px 20px 12px">
-      <div class="card-title">FSC Case Detail</div>
-      <div class="card-sub">15 FSC cases from Analysis sheet (205 total across monthly sheets) &mdash; sorted by theme</div>
+      <div class="card-title">Support Case Detail</div>
+      <div class="card-sub">19 cases from Analysis sheet (119 total FSC support cases, Feb&ndash;Oct 2026) &mdash; all onboarding-linked, sorted by theme</div>
     </div>
     <div style="overflow-x:auto">
     <table class="case-table">
@@ -845,131 +857,163 @@ body{
           <th>Account</th>
           <th>Case #</th>
           <th>Theme</th>
-          <th>Product / Feature</th>
+          <th>Product Feature</th>
           <th>Guide</th>
-          <th>Scope</th>
+          <th>OB Scope</th>
         </tr>
       </thead>
       <tbody>
-        <tr data-tip="GTE Financial: General how-to question on Security &amp; Activations setup. Guide-engaged. Should be proactively covered in onboarding.">
-          <td><strong>GTE Financial Credit Union</strong></td>
-          <td style="font-size:11px;color:#0176D3;font-weight:600">474537256</td>
-          <td><span class="theme-pill tp-perm">Permissions &amp; Security</span></td>
-          <td style="font-size:11px;color:#747474">Security &amp; Activations &middot; How-to Question</td>
-          <td><span class="guide-dot" style="background:#0176D3"></span>Yes</td>
-          <td><span class="scope-yes">&#x2713; Onboarding Scope</span></td>
-        </tr>
-        <tr data-tip="Delta Dental: Health Cloud account provisioning &mdash; guide-engaged with complex multi-product setup. Provisioning defect given guide was already in place; product issue, not a guidance gap.">
-          <td><strong>Delta Dental of California</strong><div style="font-size:10px;color:#747474">SMB Broker Portal</div></td>
-          <td style="font-size:11px;color:#0176D3;font-weight:600">473928911</td>
-          <td><span class="theme-pill tp-prov">Provisioning &amp; Access</span></td>
-          <td style="font-size:11px;color:#747474">Health Cloud &middot; Account Provisioning</td>
-          <td><span class="guide-dot" style="background:#0176D3"></span>Yes</td>
-          <td><span class="scope-no">&#x2717; Break-Fix</span></td>
-        </tr>
-        <tr data-tip="Delta Dental: FSC license and permissions setup &mdash; standard configuration task. Should be covered during onboarding. Guide-engaged account.">
-          <td><strong>Delta Dental of California</strong><div style="font-size:10px;color:#747474">SMB Broker Portal</div></td>
-          <td style="font-size:11px;color:#0176D3;font-weight:600">473973026</td>
-          <td><span class="theme-pill tp-prov">Provisioning &amp; Access</span></td>
-          <td style="font-size:11px;color:#747474">Financial Services Cloud &middot; License / Permissions</td>
-          <td><span class="guide-dot" style="background:#0176D3"></span>Yes</td>
-          <td><span class="scope-yes">&#x2713; Onboarding Scope</span></td>
-        </tr>
-        <tr data-tip="FundSERV: License and permissions setup &mdash; no guide engagement. Standard onboarding task; guidance gap from lack of engagement.">
-          <td><strong>FundSERV Inc</strong></td>
-          <td style="font-size:11px;color:#0176D3;font-weight:600">474752436</td>
-          <td><span class="theme-pill tp-prov">Provisioning &amp; Access</span></td>
-          <td style="font-size:11px;color:#747474">Education Cloud &middot; License / Permissions</td>
-          <td><span class="guide-dot" style="background:#AAAAAA"></span>No</td>
-          <td><span class="scope-yes">&#x2713; Onboarding Scope</span></td>
-        </tr>
-        <tr data-tip="LH Bank: FSC license and permissions setup &mdash; no guide engagement. Standard configuration guidance that onboarding should cover proactively.">
-          <td><strong>LH Bank (Org 2)</strong></td>
-          <td style="font-size:11px;color:#0176D3;font-weight:600">474664135</td>
-          <td><span class="theme-pill tp-prov">Provisioning &amp; Access</span></td>
-          <td style="font-size:11px;color:#747474">Financial Services Cloud &middot; License / Permissions</td>
-          <td><span class="guide-dot" style="background:#AAAAAA"></span>No</td>
-          <td><span class="scope-yes">&#x2713; Onboarding Scope</span></td>
-        </tr>
-        <tr data-tip="Oakwood Capital: Account provisioning guidance &mdash; no guide engagement. Provisioning is a standard onboarding milestone.">
-          <td><strong>Oakwood Capital Consulting AG</strong></td>
-          <td style="font-size:11px;color:#0176D3;font-weight:600">475233668</td>
-          <td><span class="theme-pill tp-prov">Provisioning &amp; Access</span></td>
-          <td style="font-size:11px;color:#747474">Financial Services Cloud &middot; Account Provisioning</td>
-          <td><span class="guide-dot" style="background:#AAAAAA"></span>No</td>
-          <td><span class="scope-yes">&#x2713; Onboarding Scope</span></td>
-        </tr>
-        <tr data-tip="The Mahoney Group: Account management question &mdash; no guide engagement. Account management setup should be addressed during onboarding.">
-          <td><strong>The Mahoney Group</strong></td>
-          <td style="font-size:11px;color:#0176D3;font-weight:600">474583454</td>
-          <td><span class="theme-pill tp-prov">Provisioning &amp; Access</span></td>
-          <td style="font-size:11px;color:#747474">Life Sciences Cloud &middot; Account Management</td>
-          <td><span class="guide-dot" style="background:#AAAAAA"></span>No</td>
-          <td><span class="scope-yes">&#x2713; Onboarding Scope</span></td>
-        </tr>
-        <tr data-tip="Tony Walker Financial: Account provisioning &mdash; no guide engagement. Standard provisioning guidance that should be covered in the onboarding engagement.">
-          <td><strong>Tony Walker Financial</strong></td>
-          <td style="font-size:11px;color:#0176D3;font-weight:600">474625175</td>
-          <td><span class="theme-pill tp-prov">Provisioning &amp; Access</span></td>
-          <td style="font-size:11px;color:#747474">Financial Services Cloud &middot; Account Provisioning</td>
-          <td><span class="guide-dot" style="background:#AAAAAA"></span>No</td>
-          <td><span class="scope-yes">&#x2713; Onboarding Scope</span></td>
-        </tr>
-        <tr data-tip="Delta Dental: Health Cloud setup and configuration &mdash; general setup question addressable with onboarding guidance. Guide-engaged account.">
-          <td><strong>Delta Dental of California</strong><div style="font-size:10px;color:#747474">SMB Broker Portal</div></td>
-          <td style="font-size:11px;color:#0176D3;font-weight:600">473826352</td>
+        <tr data-tip="Abu Dhabi Commercial Bank: FSC setup and configuration question while in active onboarding (OB case 473113606). Guide session completed — account received full engagement.">
+          <td><strong>Abu Dhabi Commercial Bank</strong></td>
+          <td style="font-size:11px;color:#0176D3;font-weight:600">473500386</td>
           <td><span class="theme-pill tp-setup">Setup &amp; Config</span></td>
-          <td style="font-size:11px;color:#747474">Health Cloud &middot; Setup / Configuration</td>
-          <td><span class="guide-dot" style="background:#0176D3"></span>Yes</td>
-          <td><span class="scope-yes">&#x2713; Onboarding Scope</span></td>
+          <td style="font-size:11px;color:#747474">FSC &middot; Setup / Configuration</td>
+          <td><span class="guide-dot" style="background:#2E844A"></span>Yes</td>
+          <td><span class="scope-yes">&#x2713; OB-linked</span></td>
         </tr>
-        <tr data-tip="Delta Dental: Revenue Cloud Advanced Configurator CML &mdash; complex product-level feature, true engineering defect. Guide engaged; guide cannot fix product bugs.">
-          <td><strong>Delta Dental of California</strong><div style="font-size:10px;color:#747474">SMB Broker Portal</div></td>
-          <td style="font-size:11px;color:#0176D3;font-weight:600">473703182</td>
+        <tr data-tip="Holding RappiPay: FSC setup and configuration question while in active onboarding (OB case 473331112). Guide session completed — account received full engagement.">
+          <td><strong>Holding RappiPay S.A.S.</strong></td>
+          <td style="font-size:11px;color:#0176D3;font-weight:600">473483831</td>
           <td><span class="theme-pill tp-setup">Setup &amp; Config</span></td>
-          <td style="font-size:11px;color:#747474">Revenue Cloud &middot; Advanced Configurator CML</td>
-          <td><span class="guide-dot" style="background:#0176D3"></span>Yes</td>
-          <td><span class="scope-no">&#x2717; Break-Fix</span></td>
+          <td style="font-size:11px;color:#747474">FSC &middot; Setup / Configuration</td>
+          <td><span class="guide-dot" style="background:#2E844A"></span>Yes</td>
+          <td><span class="scope-yes">&#x2713; OB-linked</span></td>
         </tr>
-        <tr data-tip="Delta Dental: Revenue Cloud Product Configurator &mdash; product defect requiring engineering. Guide engaged; engineering escalation needed regardless of onboarding.">
-          <td><strong>Delta Dental of California</strong><div style="font-size:10px;color:#747474">SMB Broker Portal</div></td>
-          <td style="font-size:11px;color:#0176D3;font-weight:600">473937318</td>
+        <tr data-tip="NHBC — 7 support cases from one account (OB case 472748657), all setup and provisioning questions during active onboarding. Guide-engaged: yes.">
+          <td><strong>NHBC</strong><div style="font-size:10px;color:#747474">New Org &middot; 7 cases total</div></td>
+          <td style="font-size:11px;color:#0176D3;font-weight:600">473521803</td>
           <td><span class="theme-pill tp-setup">Setup &amp; Config</span></td>
-          <td style="font-size:11px;color:#747474">Revenue Cloud &middot; Product Configurator</td>
-          <td><span class="guide-dot" style="background:#0176D3"></span>Yes</td>
-          <td><span class="scope-no">&#x2717; Break-Fix</span></td>
+          <td style="font-size:11px;color:#747474">FSC &middot; Setup / Configuration</td>
+          <td><span class="guide-dot" style="background:#2E844A"></span>Yes</td>
+          <td><span class="scope-yes">&#x2713; OB-linked</span></td>
         </tr>
-        <tr data-tip="Delta Dental: Revenue Cloud Price Management defect &mdash; pricing engine bug. Engineering escalation required.">
-          <td><strong>Delta Dental of California</strong><div style="font-size:10px;color:#747474">SMB Broker Portal</div></td>
-          <td style="font-size:11px;color:#0176D3;font-weight:600">473949206</td>
+        <tr data-tip="NHBC case 474124498 — setup & configuration question during active onboarding.">
+          <td><strong>NHBC</strong></td>
+          <td style="font-size:11px;color:#0176D3;font-weight:600">474124498</td>
           <td><span class="theme-pill tp-setup">Setup &amp; Config</span></td>
-          <td style="font-size:11px;color:#747474">Revenue Cloud &middot; Price Management</td>
-          <td><span class="guide-dot" style="background:#0176D3"></span>Yes</td>
-          <td><span class="scope-no">&#x2717; Break-Fix</span></td>
+          <td style="font-size:11px;color:#747474">FSC &middot; Setup / Configuration</td>
+          <td><span class="guide-dot" style="background:#2E844A"></span>Yes</td>
+          <td><span class="scope-yes">&#x2713; OB-linked</span></td>
         </tr>
-        <tr data-tip="Delta Dental: Revenue Cloud Attribute Pricing defect &mdash; pricing engine issue. Engineering required.">
-          <td><strong>Delta Dental of California</strong><div style="font-size:10px;color:#747474">SMB Broker Portal</div></td>
-          <td style="font-size:11px;color:#0176D3;font-weight:600">473949231</td>
+        <tr data-tip="NHBC case 474193940 — setup & configuration question during active onboarding.">
+          <td><strong>NHBC</strong></td>
+          <td style="font-size:11px;color:#0176D3;font-weight:600">474193940</td>
           <td><span class="theme-pill tp-setup">Setup &amp; Config</span></td>
-          <td style="font-size:11px;color:#747474">Revenue Cloud &middot; Attribute Pricing</td>
-          <td><span class="guide-dot" style="background:#0176D3"></span>Yes</td>
-          <td><span class="scope-no">&#x2717; Break-Fix</span></td>
+          <td style="font-size:11px;color:#747474">FSC &middot; Setup / Configuration</td>
+          <td><span class="guide-dot" style="background:#2E844A"></span>Yes</td>
+          <td><span class="scope-yes">&#x2713; OB-linked</span></td>
         </tr>
-        <tr data-tip="Clearview Federal CU: General FSC setup and configuration &mdash; no guide engagement. Standard how-to guidance that onboarding should proactively cover.">
+        <tr data-tip="NHBC case 474316652 — setup & configuration question during active onboarding.">
+          <td><strong>NHBC</strong></td>
+          <td style="font-size:11px;color:#0176D3;font-weight:600">474316652</td>
+          <td><span class="theme-pill tp-setup">Setup &amp; Config</span></td>
+          <td style="font-size:11px;color:#747474">FSC &middot; Setup / Configuration</td>
+          <td><span class="guide-dot" style="background:#2E844A"></span>Yes</td>
+          <td><span class="scope-yes">&#x2713; OB-linked</span></td>
+        </tr>
+        <tr data-tip="NHBC case 474528366 — setup & configuration question during active onboarding.">
+          <td><strong>NHBC</strong></td>
+          <td style="font-size:11px;color:#0176D3;font-weight:600">474528366</td>
+          <td><span class="theme-pill tp-setup">Setup &amp; Config</span></td>
+          <td style="font-size:11px;color:#747474">FSC &middot; Setup / Configuration</td>
+          <td><span class="guide-dot" style="background:#2E844A"></span>Yes</td>
+          <td><span class="scope-yes">&#x2713; OB-linked</span></td>
+        </tr>
+        <tr data-tip="Carclew Youth Arts: Setup & configuration question during active onboarding (OB case 474021199). No guide session recorded — guide coverage gap.">
+          <td><strong>Carclew Youth Arts</strong></td>
+          <td style="font-size:11px;color:#0176D3;font-weight:600">474121239</td>
+          <td><span class="theme-pill tp-setup">Setup &amp; Config</span></td>
+          <td style="font-size:11px;color:#747474">FSC &middot; Setup / Configuration</td>
+          <td><span class="guide-dot" style="background:#DD7A01"></span>No</td>
+          <td><span class="scope-yes">&#x2713; OB-linked</span></td>
+        </tr>
+        <tr data-tip="Clearview Federal Credit Union: Setup & configuration question during active onboarding (OB case 473631078). No guide session recorded.">
           <td><strong>Clearview Federal Credit Union</strong></td>
           <td style="font-size:11px;color:#0176D3;font-weight:600">474140413</td>
           <td><span class="theme-pill tp-setup">Setup &amp; Config</span></td>
-          <td style="font-size:11px;color:#747474">Financial Services Cloud &middot; Setup / Configuration</td>
-          <td><span class="guide-dot" style="background:#AAAAAA"></span>No</td>
-          <td><span class="scope-yes">&#x2713; Onboarding Scope</span></td>
+          <td style="font-size:11px;color:#747474">FSC &middot; Setup / Configuration</td>
+          <td><span class="guide-dot" style="background:#DD7A01"></span>No</td>
+          <td><span class="scope-yes">&#x2713; OB-linked</span></td>
         </tr>
-        <tr data-tip="First National Bank St. Lucia: OmniScript setup question &mdash; no guide engagement. OmniScript configuration is a standard onboarding topic; guidance gap.">
-          <td><strong>First National Bank St. Lucia Ltd</strong></td>
-          <td style="font-size:11px;color:#0176D3;font-weight:600">475176768</td>
+        <tr data-tip="Sibley Memorial Hospital: Setup & configuration question during active onboarding (OB case 473003522). No guide session recorded.">
+          <td><strong>Sibley Memorial Hospital</strong></td>
+          <td style="font-size:11px;color:#0176D3;font-weight:600">474181398</td>
           <td><span class="theme-pill tp-setup">Setup &amp; Config</span></td>
-          <td style="font-size:11px;color:#747474">OmniStudio &middot; OmniScript</td>
-          <td><span class="guide-dot" style="background:#AAAAAA"></span>No</td>
-          <td><span class="scope-yes">&#x2713; Onboarding Scope</span></td>
+          <td style="font-size:11px;color:#747474">FSC &middot; Setup / Configuration</td>
+          <td><span class="guide-dot" style="background:#DD7A01"></span>No</td>
+          <td><span class="scope-yes">&#x2713; OB-linked</span></td>
+        </tr>
+        <tr data-tip="Delta Dental (SMB): License setup and provisioning during active onboarding (OB case 473495201). Guide-engaged account.">
+          <td><strong>Delta Dental of California</strong><div style="font-size:10px;color:#747474">SMB Broker Portal</div></td>
+          <td style="font-size:11px;color:#0176D3;font-weight:600">473973026</td>
+          <td><span class="theme-pill tp-prov">Provisioning &amp; Licenses</span></td>
+          <td style="font-size:11px;color:#747474">FSC &middot; License Setup / Permissions</td>
+          <td><span class="guide-dot" style="background:#2E844A"></span>Yes</td>
+          <td><span class="scope-yes">&#x2713; OB-linked</span></td>
+        </tr>
+        <tr data-tip="NHBC case 474056513 — account provisioning question during active onboarding.">
+          <td><strong>NHBC</strong></td>
+          <td style="font-size:11px;color:#0176D3;font-weight:600">474056513</td>
+          <td><span class="theme-pill tp-prov">Provisioning &amp; Licenses</span></td>
+          <td style="font-size:11px;color:#747474">FSC &middot; Account Provisioning</td>
+          <td><span class="guide-dot" style="background:#2E844A"></span>Yes</td>
+          <td><span class="scope-yes">&#x2713; OB-linked</span></td>
+        </tr>
+        <tr data-tip="NHBC case 474561530 — account provisioning question during active onboarding.">
+          <td><strong>NHBC</strong></td>
+          <td style="font-size:11px;color:#0176D3;font-weight:600">474561530</td>
+          <td><span class="theme-pill tp-prov">Provisioning &amp; Licenses</span></td>
+          <td style="font-size:11px;color:#747474">FSC &middot; Account Provisioning</td>
+          <td><span class="guide-dot" style="background:#2E844A"></span>Yes</td>
+          <td><span class="scope-yes">&#x2713; OB-linked</span></td>
+        </tr>
+        <tr data-tip="Smithsonian Institution: License and provisioning setup during active onboarding (OB case 473510328). No guide session recorded.">
+          <td><strong>Smithsonian Institution</strong></td>
+          <td style="font-size:11px;color:#0176D3;font-weight:600">474262289</td>
+          <td><span class="theme-pill tp-prov">Provisioning &amp; Licenses</span></td>
+          <td style="font-size:11px;color:#747474">FSC &middot; License Setup / Permissions</td>
+          <td><span class="guide-dot" style="background:#DD7A01"></span>No</td>
+          <td><span class="scope-yes">&#x2713; OB-linked</span></td>
+        </tr>
+        <tr data-tip="Marks Group Wealth Management: Account provisioning question during active onboarding (OB case 472966076). No guide session recorded.">
+          <td><strong>Marks Group Wealth Mgmt</strong><div style="font-size:10px;color:#747474">2nd Org</div></td>
+          <td style="font-size:11px;color:#0176D3;font-weight:600">474467775</td>
+          <td><span class="theme-pill tp-prov">Provisioning &amp; Licenses</span></td>
+          <td style="font-size:11px;color:#747474">FSC &middot; Account Provisioning</td>
+          <td><span class="guide-dot" style="background:#DD7A01"></span>No</td>
+          <td><span class="scope-yes">&#x2713; OB-linked</span></td>
+        </tr>
+        <tr data-tip="Tony Walker Financial: Account provisioning question during active onboarding (OB case 474183951). No guide session recorded.">
+          <td><strong>Tony Walker Financial</strong></td>
+          <td style="font-size:11px;color:#0176D3;font-weight:600">474625175</td>
+          <td><span class="theme-pill tp-prov">Provisioning &amp; Licenses</span></td>
+          <td style="font-size:11px;color:#747474">FSC &middot; Account Provisioning</td>
+          <td><span class="guide-dot" style="background:#DD7A01"></span>No</td>
+          <td><span class="scope-yes">&#x2713; OB-linked</span></td>
+        </tr>
+        <tr data-tip="LH Bank (Org 2): License and permissions setup during active onboarding (OB case 474165468). No guide session recorded.">
+          <td><strong>LH Bank (Org 2)</strong></td>
+          <td style="font-size:11px;color:#0176D3;font-weight:600">474664135</td>
+          <td><span class="theme-pill tp-prov">Provisioning &amp; Licenses</span></td>
+          <td style="font-size:11px;color:#747474">FSC &middot; License Setup / Permissions</td>
+          <td><span class="guide-dot" style="background:#DD7A01"></span>No</td>
+          <td><span class="scope-yes">&#x2713; OB-linked</span></td>
+        </tr>
+        <tr data-tip="Heisman: License setup and provisioning during active onboarding (OB case 474413238). No guide session recorded.">
+          <td><strong>Heisman</strong></td>
+          <td style="font-size:11px;color:#0176D3;font-weight:600">474920913</td>
+          <td><span class="theme-pill tp-prov">Provisioning &amp; Licenses</span></td>
+          <td style="font-size:11px;color:#747474">FSC &middot; License Setup / Permissions</td>
+          <td><span class="guide-dot" style="background:#DD7A01"></span>No</td>
+          <td><span class="scope-yes">&#x2713; OB-linked</span></td>
+        </tr>
+        <tr data-tip="Oakwood Capital Consulting AG: Account provisioning guidance during active onboarding (OB case 474776546). No guide session recorded.">
+          <td><strong>Oakwood Capital Consulting AG</strong></td>
+          <td style="font-size:11px;color:#0176D3;font-weight:600">475233668</td>
+          <td><span class="theme-pill tp-prov">Provisioning &amp; Licenses</span></td>
+          <td style="font-size:11px;color:#747474">FSC &middot; Account Provisioning</td>
+          <td><span class="guide-dot" style="background:#DD7A01"></span>No</td>
+          <td><span class="scope-yes">&#x2713; OB-linked</span></td>
         </tr>
       </tbody>
     </table>
@@ -1121,12 +1165,10 @@ BARS.forEach(d=>{
 
 // ── Theme chart (Tab 3) ───────────────────────────────────────────────
 const THEMES = [
-  {label:'Provisioning & Access', value:7, pct:47, color:'#9050E9',
-   tip:'7 FSC cases: license/permissions setup, account provisioning, account management — 6 onboarding scope, 1 break-fix (Delta Dental Health Cloud provisioning defect)'},
-  {label:'Setup & Configuration', value:7, pct:47, color:'#0176D3',
-   tip:'7 FSC cases: general setup, Revenue Cloud issues — 3 onboarding scope, 4 break-fix (Delta Dental Revenue Cloud defects)'},
-  {label:'Permissions & Security', value:1, pct:7, color:'#06A59A',
-   tip:'1 FSC case: GTE Financial — how-to question on Security & Activations setup. Onboarding scope.'},
+  {label:'Setup & Configuration', value:10, pct:53, color:'#0176D3',
+   tip:'10 support cases (53%): FSC setup & configuration questions during active onboarding — 7 from guide-engaged accounts (NHBC, Abu Dhabi, RappiPay), 3 from accounts with no guide session (Carclew, Clearview, Sibley).'},
+  {label:'Provisioning & Licenses', value:9, pct:47, color:'#9050E9',
+   tip:'9 support cases (47%): license setup, account provisioning, permissions — 3 from guide-engaged accounts (Delta Dental, NHBC×2), 6 from accounts with no guide session.'},
 ];
 const themeEl = document.getElementById('theme-chart');
 THEMES.forEach(d=>{
@@ -1164,8 +1206,8 @@ THEMES.forEach(d=>{
   const svg = document.getElementById('guide-donut');
   if(!svg) return;
   const cx=80,cy=80,r=60,stroke=20;
-  const slices=[{val:8,color:'#0176D3'},{val:7,color:'#AAAAAA'}];
-  const total=15;
+  const slices=[{val:10,color:'#2E844A'},{val:9,color:'#DD7A01'}];
+  const total=19;
   let angle=-Math.PI/2;
   slices.forEach(s=>{
     const sweep = (s.val/total)*2*Math.PI;
@@ -1185,13 +1227,13 @@ THEMES.forEach(d=>{
   const t1=document.createElementNS('http://www.w3.org/2000/svg','text');
   t1.setAttribute('x',cx);t1.setAttribute('y',cy-6);
   t1.setAttribute('text-anchor','middle');t1.setAttribute('font-size','18');
-  t1.setAttribute('font-weight','800');t1.setAttribute('fill','#0176D3');
+  t1.setAttribute('font-weight','800');t1.setAttribute('fill','#2E844A');
   t1.textContent='53%';svg.appendChild(t1);
   const t2=document.createElementNS('http://www.w3.org/2000/svg','text');
   t2.setAttribute('x',cx);t2.setAttribute('y',cy+12);
   t2.setAttribute('text-anchor','middle');t2.setAttribute('font-size','10');
   t2.setAttribute('fill','#747474');
-  t2.textContent='guide-engaged';svg.appendChild(t2);
+  t2.textContent='guide+OB';svg.appendChild(t2);
 })();
 
 // ── Animate bars on load ──────────────────────────────────────────────
